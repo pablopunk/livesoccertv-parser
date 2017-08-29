@@ -19,7 +19,7 @@ console.log(matches('spain', 'real madrid')) //=> [{...}, {...}, ...]
 
 Match object:
 
-```json
+```js
 Match {
   played: false,
   competition: 'Supercopa de España',
