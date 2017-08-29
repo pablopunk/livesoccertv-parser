@@ -4,7 +4,7 @@
   "description": "Parse match info from livesoccertv",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava && standard --fix"
   },
   "keywords": [],
   "author": "",
