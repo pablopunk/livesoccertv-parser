@@ -1,7 +1,7 @@
 {
   "name": "livesoccertv-parser",
   "version": "1.0.0",
-  "description": "",
+  "description": "Parse match info from livesoccertv",
   "main": "index.js",
   "scripts": {
     "test": "ava"
