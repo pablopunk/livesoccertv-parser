@@ -1,4 +1,4 @@
-const got = require('got')
+const fetch = require('isomorphic-fetch')
 const cheerio = require('cheerio')
 
 const baseUrl = 'http://www.livesoccertv.com/teams'
@@ -12,7 +12,7 @@ const matchRowType = {
 	'tvs': 5
 }
 
-const getBody = async url => (await got(url)).body
+const getBody = async url => (await fetch(url)).text()
 const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
 const getMatchRows = $ => $('tr.matchrow')
 const objIsNotText = a => a.type != 'text'
