@@ -19,7 +19,7 @@ const objIsNotText = a => a.type != 'text'
 
 const getTitleFromRow = (row, field, n = 0) => row.children.filter(objIsNotText)[matchRowType[field]].children.filter(objIsNotText)[n].attribs.title
 
-const parsePlayed = row => getTitleFromRow(row, 'played') !== 'Match ended'
+const parsePlayed = row => getTitleFromRow(row, 'played') === 'Match ended'
 const parseCompetition = row => getTitleFromRow(row, 'competition')
 const parseDate = row => getTitleFromRow(row, 'date').replace('Schedule for ', '')
 const parseTime = row => row.children.filter(objIsNotText)[matchRowType['time']].children[1].children[0].children[0].data
