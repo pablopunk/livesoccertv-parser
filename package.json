@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
-    "isomorphic-fetch": "^2.2.1"
+    "isomorphic-fetch": "^2.2.1",
+    "moment": "^2.18.1"
   },
   "devDependencies": {
     "ava": "^0.22.0",
