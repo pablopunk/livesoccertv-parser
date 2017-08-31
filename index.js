@@ -54,7 +54,7 @@ const parseMatches = body => {
   return matchRows.map((i, r) => (new Match(r)))
 }
 
-module.exports = async (country, team) => {
+module.exports = async (country, team) => {
   const body = await getBody(getTeamUrl(country, team))
   let matches = parseMatches(body)
   matches = convertObjectsToArray(matches)

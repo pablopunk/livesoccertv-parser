@@ -43,9 +43,8 @@ var parseCompetition = function parseCompetition(row) {
 var parseDate = function parseDate(row) {
   return getTitleFromRow(row, 'date').replace('Schedule for ', '');
 };
-// const parseTime = row => row.children.filter(objIsNotText)[matchRowType['time']].children[1].children[0].children[0].data
 var parseTime = function parseTime(row) {
-  return row.children.filter(objIsNotText)[matchRowType['time']].children[1].children[0];
+  return row.children.filter(objIsNotText)[matchRowType['time']].children[1].children[0].children[0].data;
 };
 var parseGame = function parseGame(row) {
   return getTitleFromRow(row, 'game');
@@ -89,7 +88,6 @@ var Match = function Match(row) {
 var parseMatches = function parseMatches(body) {
   var $ = cheerio.load(body);
   var matchRows = getMatchRows($);
-  matchRows = [matchRows[5]];
   return matchRows.map(function (i, r) {
     return new Match(r);
   });
