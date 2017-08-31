@@ -1,5 +1,5 @@
-const test = require('ava')
-const m = require('.')
+import test from 'ava'
+import m from './index' // import not built code can help when getting errors on tests
 
 test('It works with basic parameters', async t => {
   const matches = await m('spain', 'real-madrid')

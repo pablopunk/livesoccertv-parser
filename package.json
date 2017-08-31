@@ -4,7 +4,7 @@
   "description": "Parse match info from livesoccertv",
   "main": "build.js",
   "scripts": {
-    "test": "ava && standard --fix",
+    "test": "npm run build && ava && standard --fix",
     "build": "babel index.js --presets babel-preset-es2015 --out-file build.js"
   },
   "keywords": [],
