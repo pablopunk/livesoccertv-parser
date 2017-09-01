@@ -1,4 +1,4 @@
-# livesoccertv-parser
+# livesoccertv-parser [![npm](https://img.shields.io/npm/dt/livesoccertv-parser)](https://www.npmjs.com/package/livesoccertv-parser)
 
 >© All rights reserved to [Live soccer TV](http://www.livesoccertv.com/)
 
