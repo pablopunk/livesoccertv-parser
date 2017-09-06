@@ -1,6 +1,6 @@
 {
   "name": "livesoccertv-parser",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Parse match info from livesoccertv",
   "main": "build.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "babel index.js --presets babel-preset-es2015 --out-file build.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Pablo Varela",
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
@@ -20,5 +20,13 @@
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "standard": "^10.0.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablopunk/livesoccertv-parser.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pablopunk/livesoccertv-parser/issues"
+  },
+  "homepage": "https://github.com/pablopunk/livesoccertv-parser#readme"
 }
