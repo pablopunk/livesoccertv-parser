@@ -61,4 +61,3 @@ module.exports = async (country, team) => {
   matches = convertObjectsToArray(matches)
   return matches
 }
-
