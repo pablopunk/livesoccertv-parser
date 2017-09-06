@@ -1,14 +1,9 @@
 const fetch = require('isomorphic-fetch')
 const cheerio = require('cheerio')
-const moment = require('moment')
 
 const baseUrl = 'http://www.livesoccertv.com/teams'
 
-// @TODO: Customize time format and time zone
-moment.locale('es')
-const adjustLocalTime = time => moment(time, 'hh:mm').add(6, 'hour').format('LT')
-
-const matchRowType = {
+const ROW = {
   'played': 0,
   'competition': 1,
   'date': 2,
@@ -22,17 +17,18 @@ const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
 const getMatchRows = $ => $('tr.matchrow')
 const objIsNotText = a => a.type !== 'text'
 
-const getTitleFromRow = (row, field, n = 0) => row.children.filter(objIsNotText)[matchRowType[field]].children.filter(objIsNotText)[n].attribs.title
+const getCell = (row, field) => row.children.filter(objIsNotText)[ROW[field]]
+const getTitleFromRow = (row, field, n = 0) => getCell(row, field).children.filter(objIsNotText)[n].attribs.title
 
-const parsePlayed = row => getTitleFromRow(row, 'played') === 'Match ended'
+const parsePlayed = row => (getCell(row, 'played').children.filter(objIsNotText)[0].attribs.class === 'narrow ft')
 const parseCompetition = row => getTitleFromRow(row, 'competition')
-const parseDate = row => getTitleFromRow(row, 'date').replace('Schedule for ', '')
-const parseTime = row => row.children.filter(objIsNotText)[matchRowType['time']].children[1].children[0].children[0].data
+const parseDate = row => getCell(row, 'date').children.filter(objIsNotText)[0].children[1].children[0].data
+const parseTime = row => getCell(row, 'time').children[1].children[0].children[0].data
 const parseGame = row => getTitleFromRow(row, 'game')
-const parseTvs = row => row.children.filter(objIsNotText)[matchRowType['tvs']].children.filter(objIsNotText).map((r, i) => getTitleFromRow(row, 'tvs', i))
+const parseTvs = row => getCell(row, 'tvs').children.filter(objIsNotText).map((r, i) => getTitleFromRow(row, 'tvs', i))
 
 const filterTvs = tv => tv !== 'More channels'
-const removeEspana = tvs => tvs.map(c => c.replace('Espana', ''))
+const removeEspana = tvs => tvs.map(c => c.replace(/ *espa.a/i, ''))
 
 const convertObjectsToArray = objects => {
   let array = []
@@ -45,7 +41,7 @@ class Match {
     this.played = parsePlayed(row)
     this.competition = parseCompetition(row)
     this.date = parseDate(row)
-    this.time = adjustLocalTime(parseTime(row))
+    this.time = parseTime(row)
     this.game = parseGame(row)
     this.tvs = parseTvs(row)
     this.tvs = removeEspana(this.tvs)
@@ -65,3 +61,4 @@ module.exports = async (country, team) => {
   matches = convertObjectsToArray(matches)
   return matches
 }
+
