@@ -1,10 +1,15 @@
 const fetch = require('isomorphic-fetch')
 const cheerio = require('cheerio')
+const moment = require('moment')
 
 const baseUrl = 'https://microsec.pw/www.livesoccertv.com/es/teams'
 const headers = {
   'Accept-Language': 'es-ES,es;q=0.8,en;q=0.6,gl;q=0.4'
 }
+
+// @TODO: Customize time format and time zone    const ROW = {
+moment.locale('es')
+const adjustLocalTime = time => moment(time, 'hh:mm').add(6, 'hour').format('LT')
 
 const ROW = {
   'played': 0,
@@ -44,7 +49,7 @@ class Match {
     this.played = parsePlayed(row)
     this.competition = parseCompetition(row)
     this.date = parseDate(row)
-    this.time = parseTime(row)
+    this.time = adjustLocalTime(parseTime(row))
     this.game = parseGame(row)
     this.tvs = parseTvs(row)
     this.tvs = removeEspana(this.tvs)
