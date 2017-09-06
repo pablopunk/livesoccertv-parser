@@ -1,7 +1,10 @@
 const fetch = require('isomorphic-fetch')
 const cheerio = require('cheerio')
 
-const baseUrl = 'https://www.livesoccertv.com/teams'
+const baseUrl = 'https://microsec.pw/www.livesoccertv.com/es/teams'
+const headers = {
+  'Accept-Language': 'es-ES,es;q=0.8,en;q=0.6,gl;q=0.4'
+}
 
 const ROW = {
   'played': 0,
@@ -12,7 +15,7 @@ const ROW = {
   'tvs': 5
 }
 
-const getBody = async url => (await fetch(url)).text()
+const getBody = async url => (await fetch(url, {headers})).text()
 const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
 const getMatchRows = $ => $('tr.matchrow')
 const objIsNotText = a => a.type !== 'text'
@@ -51,7 +54,7 @@ class Match {
 
 const parseMatches = body => {
   const $ = cheerio.load(body)
-  let matchRows = getMatchRows($)
+  const matchRows = getMatchRows($)
   return matchRows.map((i, r) => (new Match(r)))
 }
 
