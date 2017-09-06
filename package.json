@@ -7,7 +7,7 @@
     "dev": "ava --watch",
     "test": "npm run build && ava && standard --fix",
     "build": "babel index.js --presets babel-preset-es2015 --out-file build.js",
-    "prepublish": "npm run build"
+    "prepublish": "npm test"
   },
   "keywords": [],
   "author": "Pablo Varela",
