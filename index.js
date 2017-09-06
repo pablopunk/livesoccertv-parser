@@ -1,7 +1,7 @@
 const fetch = require('isomorphic-fetch')
 const cheerio = require('cheerio')
 
-const baseUrl = 'http://www.livesoccertv.com/teams'
+const baseUrl = 'https://www.livesoccertv.com/teams'
 
 const ROW = {
   'played': 0,
