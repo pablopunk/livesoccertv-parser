@@ -3,10 +3,11 @@
 function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
 
 var fetch = require('isomorphic-fetch')
+var microfetch = require('microfetch')(fetch)
 var cheerio = require('cheerio')
 var moment = require('moment')
 
-var baseUrl = 'https://microsec.pw/www.livesoccertv.com/es/teams'
+var baseUrl = 'http://www.livesoccertv.com/es/teams'
 var headers = {
   'Accept-Language': 'es-ES,es;q=0.8,en;q=0.6,gl;q=0.4',
   'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.45 Safari/535.19'
@@ -27,7 +28,7 @@ var ROW = {
 }
 
 var getBody = async function getBody (url) {
-  return (await fetch(url, { headers: headers })).text()
+  return (await microfetch(url, { headers: headers })).text()
 }
 var getTeamUrl = function getTeamUrl (country, team) {
   return baseUrl + '/' + country + '/' + team
