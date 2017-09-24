@@ -1,8 +1,9 @@
 const fetch = require('isomorphic-fetch')
+const microfetch = require('microfetch')(fetch)
 const cheerio = require('cheerio')
 const moment = require('moment')
 
-const baseUrl = 'https://microsec.pw/www.livesoccertv.com/es/teams'
+const baseUrl = 'http://www.livesoccertv.com/es/teams'
 const headers = {
   'Accept-Language': 'es-ES,es;q=0.8,en;q=0.6,gl;q=0.4',
   'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.45 Safari/535.19'
@@ -21,7 +22,7 @@ const ROW = {
   'tvs': 5
 }
 
-const getBody = async url => (await fetch(url, {headers})).text()
+const getBody = async url => (await microfetch(url, {headers})).text()
 const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
 const getMatchRows = $ => $('tr.matchrow')
 const objIsNotText = a => a.type !== 'text'
