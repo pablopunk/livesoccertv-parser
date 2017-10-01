@@ -11,9 +11,9 @@ var baseUrl = 'http://www.livesoccertv.com/es/teams';
 var headers = {
   'Accept-Language': 'es-ES,es;q=0.8,en;q=0.6,gl;q=0.4',
   'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.45 Safari/535.19'
+};
 
-  // @TODO: Customize time format and time zone    const ROW = {
-};moment.locale('es');
+moment.locale('es');
 var adjustLocalTime = function adjustLocalTime(time) {
   return moment(time, 'hh:mm').add(6, 'hour').format('LT');
 };

@@ -10,7 +10,6 @@ const headers = {
     'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.45 Safari/535.19'
 }
 
-// @TODO: Customize time format and time zone    const ROW = {
 moment.locale('es')
 const adjustLocalTime = time =>
   moment(time, 'hh:mm')
