@@ -5,7 +5,7 @@
   "main": "build.js",
   "scripts": {
     "dev": "ava --watch",
-    "test": "npm run build && ava && standard --fix",
+    "test": "xo --fix index.js && npm run build && ava",
     "build": "babel index.js --presets babel-preset-es2015 --out-file build.js",
     "prepublish": "npm test"
   },
@@ -22,7 +22,41 @@
     "ava": "^0.22.0",
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "standard": "^10.0.3"
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-plugin-prettier": "^2.3.1",
+    "prettier": "^1.7.3",
+    "xo": "^0.18.2"
+  },
+  "xo": {
+    "extends": "prettier",
+    "plugins": [
+      "prettier"
+    ],
+    "parserOptions": {
+      "sourceType": "script"
+    },
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "bracketSpacing": true,
+          "trailingComma": "none",
+          "semi": false
+        }
+      ],
+      "max-len": [
+        "error",
+        {
+          "code": 120,
+          "ignoreUrls": true
+        }
+      ],
+      "capitalized-comments": "off",
+      "camelcase": "off",
+      "no-warning-comments": "off"
+    },
+    "space": true
   },
   "repository": {
     "type": "git",
