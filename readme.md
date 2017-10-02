@@ -14,7 +14,7 @@ The parser works with promises:
 
 ```js
 const matches = require('livesoccertv-parser')
-console.log(matches('spain', 'real-madrid')) //=> [{...}, {...}, ...]
+console.log(await matches('spain', 'real-madrid')) //=> [{...}, {...}, ...]
 ```
 
 Match object:
