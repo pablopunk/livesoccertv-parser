@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-npm install --save livesoccertv-parser
+npm install livesoccertv-parser
 ```
 
 ## Usage
@@ -26,12 +26,11 @@ Match {
   date: 'August 13',
   time: '16:00',
   game: 'Barcelona vs Real Madrid',
-  tvs: 
+  tvs:
     [
       'TeleCinco',
       'TV3',
-      'Radio Barca (International)',
-      'LAOLA1.TV (Austria, Georgia, Germany…)',
+      'Radio Barca'
     ]
 }
 ```
