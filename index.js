@@ -3,11 +3,14 @@ const microfetch = require('microfetch')(fetch)
 const cheerio = require('cheerio')
 const moment = require('moment')
 
-const baseUrl = 'http://www.livesoccertv.com/es/teams'
+let $ // cheerio will be initialized with the html body
+
+const baseUrl = 'http://www.livesoccertv.com/teams'
 const headers = {
-  'Accept-Language': 'es-ES,es;q=0.8,en;q=0.6,gl;q=0.4',
+  'Accept-Language': 'en-US,en;q=0.8',
   'User-Agent':
-    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.45 Safari/535.19'
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.45 Safari/535.19',
+  Cookie: 'u_lang=en, u_locale=en_US'
 }
 
 moment.locale('es')
@@ -16,41 +19,44 @@ const adjustLocalTime = time =>
     .add(6, 'hour')
     .format('LT')
 
-const ROW = {
-  played: 0,
-  competition: 1,
-  date: 2,
-  time: 3,
-  game: 4,
-  tvs: 5
-}
-
 const getBody = async url => (await microfetch(url, { headers })).text()
 const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
-const getMatchRows = $ => $('tr.matchrow')
-const objIsNotText = a => a.type !== 'text'
 
-const getCell = (row, field) => row.children.filter(objIsNotText)[ROW[field]]
-const getTitleFromRow = (row, field, n = 0) =>
-  getCell(row, field).children.filter(objIsNotText)[n].attribs.title
+const parsePlayed = n =>
+  $('tr.matchrow > td.livecell > span')
+    .eq(n)
+    .attr('class') === 'narrow ft'
+const parseCompetition = n =>
+  $('tr.matchrow > td.compcell > a')
+    .eq(n)
+    .attr('title')
+const parseDate = n =>
+  $('tr.matchrow > td.datecell > a > span')
+    .eq(n)
+    .text()
+const parseTime = n =>
+  $('tr.matchrow > td.timecell')
+    .eq(n)
+    .text()
+const parseGame = n =>
+  $('tr.matchrow > td.timecell')
+    .next('td')
+    .eq(n)
+    .find('a')
+    .text()
 
-const parsePlayed = row =>
-  getCell(row, 'played').children.filter(objIsNotText)[0].attribs.class ===
-  'narrow ft'
-const parseCompetition = row => getTitleFromRow(row, 'competition')
-const parseDate = row =>
-  getCell(row, 'date').children.filter(objIsNotText)[0].children[1].children[0]
-    .data
-const parseTime = row =>
-  getCell(row, 'time').children[1].children[0].children[0].data
-const parseGame = row => getTitleFromRow(row, 'game')
-const parseTvs = row =>
-  getCell(row, 'tvs')
-    .children.filter(objIsNotText)
-    .map((r, i) => getTitleFromRow(row, 'tvs', i))
+const parseTvs = n => {
+  const tvs = []
+  $('tr.matchrow > td[width="240"]')
+    .eq(n)
+    .find('a')
+    .each((i, el) => {
+      tvs.push($(el).text())
+    })
+  return tvs
+}
 
-const filterTvs = tv => tv !== 'More channels'
-const removeEspana = tvs => tvs.map(c => c.replace(/ *espa.a/i, ''))
+const filterTvs = tv => tv && !tv.includes('…')
 
 const convertObjectsToArray = objects => {
   const array = []
@@ -59,22 +65,22 @@ const convertObjectsToArray = objects => {
 }
 
 class Match {
-  constructor(row) {
-    this.played = parsePlayed(row)
-    this.competition = parseCompetition(row)
-    this.date = parseDate(row)
-    this.time = adjustLocalTime(parseTime(row))
-    this.game = parseGame(row)
-    this.tvs = parseTvs(row)
-    this.tvs = removeEspana(this.tvs)
+  constructor(n) {
+    this.played = parsePlayed(n)
+    this.competition = parseCompetition(n)
+    this.date = parseDate(n)
+    this.time = adjustLocalTime(parseTime(n))
+    this.game = parseGame(n)
+    this.tvs = parseTvs(n)
     this.tvs = this.tvs.filter(filterTvs)
   }
 }
 
 const parseMatches = body => {
-  const $ = cheerio.load(body)
-  const matchRows = getMatchRows($)
-  return matchRows.map((i, r) => new Match(r))
+  $ = cheerio.load(body)
+  const matchRows = $('tr.matchrow')
+
+  return matchRows.map(i => new Match(i))
 }
 
 module.exports = async (country, team) => {
