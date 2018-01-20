@@ -68,7 +68,7 @@ const convertObjectsToArray = objects => {
 }
 
 class Match {
-  constructor (n) {
+  constructor(n) {
     this.played = parsePlayed(n)
     this.competition = parseCompetition(n)
     this.date = parseDate(n)
