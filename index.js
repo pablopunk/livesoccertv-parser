@@ -90,5 +90,6 @@ module.exports = async (country, team) => {
   const body = await getBody(getTeamUrl(country, team))
   let matches = parseMatches(body)
   matches = convertObjectsToArray(matches)
+  matches = matches.filter(m => m.time !== 'Invalid date' && m.tvs.length !== 0)
   return matches
 }
