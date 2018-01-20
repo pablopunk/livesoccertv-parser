@@ -34,10 +34,13 @@ const parseDate = n =>
   $('tr.matchrow > td.datecell > a > span')
     .eq(n)
     .text()
-const parseTime = n =>
-  $('tr.matchrow > td.timecell')
+const parseTime = n => {
+  return $('tr.matchrow > td.timecell')
     .eq(n)
+    .find('span')
+    .eq(2)
     .text()
+}
 const parseGame = n =>
   $('tr.matchrow > td.timecell')
     .next('td')
@@ -65,7 +68,7 @@ const convertObjectsToArray = objects => {
 }
 
 class Match {
-  constructor(n) {
+  constructor (n) {
     this.played = parsePlayed(n)
     this.competition = parseCompetition(n)
     this.date = parseDate(n)
