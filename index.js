@@ -1,27 +1,22 @@
 const fetch = require('isomorphic-fetch')
+const moment = require('moment')
 const microfetch = require('microfetch')(fetch)
 const cheerio = require('cheerio')
-const moment = require('moment')
+require('moment-timezone')
+moment.tz.setDefault('America/New_York')
 
 let $ // cheerio will be initialized with the html body
 
 const baseUrl = 'http://www.livesoccertv.com/teams'
-const headers = {
-  'Accept-Language': 'en-US,en;q=0.8',
-  'User-Agent':
-    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.45 Safari/535.19',
-  Cookie:
-    'u_continent=Europe; u_country=Spain; u_country_code=ES; u_timezone=Europe%2FMadrid; u_lang=en; u_locale=en_US'
-}
 
-moment.locale('es')
-const adjustLocalTime = time =>
-  moment(time, 'hh:mm')
-    .add(6, 'hour')
-    .format('LT')
-
-const getBody = async url => (await microfetch(url, { headers })).text()
+const getBody = async url => (await microfetch(url)).text()
 const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
+
+const adjustLocalTime = (time, timezone) =>
+  moment(time, 'hh:mm')
+    .clone()
+    .tz(timezone)
+    .format('hh:mm')
 
 const parsePlayed = n =>
   $('tr.matchrow > td.livecell > span')
@@ -69,11 +64,11 @@ const convertObjectsToArray = objects => {
 }
 
 class Match {
-  constructor(n) {
+  constructor (n) {
     this.played = parsePlayed(n)
     this.competition = parseCompetition(n)
     this.date = parseDate(n)
-    this.time = adjustLocalTime(parseTime(n))
+    this.time = parseTime(n)
     this.game = parseGame(n)
     this.tvs = parseTvs(n)
     this.tvs = this.tvs.filter(filterTvs)
@@ -87,10 +82,19 @@ const parseMatches = body => {
   return matchRows.map(i => new Match(i))
 }
 
-module.exports = async (country, team) => {
+module.exports = async (country, team, options = {}) => {
   const body = await getBody(getTeamUrl(country, team))
   let matches = parseMatches(body)
+
   matches = convertObjectsToArray(matches)
   matches = matches.filter(m => m.time !== 'Invalid date' && m.tvs.length !== 0)
+
+  if (options.timezone) {
+    matches = matches.map(m => ({
+      ...m,
+      time: adjustLocalTime(m.time, options.timezone)
+    }))
+  }
+
   return matches
 }
