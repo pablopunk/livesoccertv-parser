@@ -10,7 +10,8 @@ const headers = {
   'Accept-Language': 'en-US,en;q=0.8',
   'User-Agent':
     'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.45 Safari/535.19',
-  Cookie: 'u_continent=Europe; u_country=Spain; u_country_code=ES; u_timezone=Europe%2FMadrid; u_lang=en; u_locale=en_US'
+  Cookie:
+    'u_continent=Europe; u_country=Spain; u_country_code=ES; u_timezone=Europe%2FMadrid; u_lang=en; u_locale=en_US'
 }
 
 moment.locale('es')
