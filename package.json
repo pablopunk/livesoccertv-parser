@@ -9,7 +9,20 @@
     "build": "babel index.js --out-file build.js",
     "prepublish": "npm test"
   },
-  "keywords": [],
+  "keywords": [
+    "soccer",
+    "football",
+    "fútbol",
+    "live",
+    "parser",
+    "games",
+    "tv",
+    "tvs",
+    "channel",
+    "guide",
+    "schedule",
+    "livesoccertv"
+  ],
   "author": "Pablo Varela",
   "license": "ISC",
   "dependencies": {
