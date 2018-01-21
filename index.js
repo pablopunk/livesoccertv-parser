@@ -17,7 +17,7 @@ const getBody = async url => {
   switch (timezone) {
     case 'Europe/Madrid':
       Cookie =
-        'live=live; u_scores=on; u_continent=Europe; u_country=Spain; u_country_code=ES; u_timezone=Europe%2FMadrid; u_lang=en; u_locale=en_US;'
+        'live=live; u_scores=on; u_continent=Europe; u_country=Spain; u_country_code=ES; u_timezone=Europe%2FMadrid; u_lang=es; u_locale=en_ES;'
       break
     case 'Europe/London':
       Cookie =
@@ -29,7 +29,7 @@ const getBody = async url => {
       break
     default:
       Cookie =
-        'live=live; u_scores=on; u_continent=Europe; u_country=Spain; u_country_code=ES; u_timezone=Europe%2FMadrid; u_lang=en; u_locale=en_US;'
+        'live=live; u_scores=on; u_continent=Europe; u_country=Spain; u_country_code=ES; u_timezone=Europe%2FMadrid; u_lang=es; u_locale=en_ES;'
       break
   }
   const headers = {Cookie}
