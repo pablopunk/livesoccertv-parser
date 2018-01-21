@@ -64,6 +64,11 @@ Feel free to open an _issue_ or a _PR_.
 
 __ISC license__
 
+## Related
+
+* [microsoccer](https://github.com/pablopunk/microsoccer): Microservice to fetch soccer games schedules and tv channels.
+
+
 ## Author
 
 | ![me](https://www.gravatar.com/avatar/fa50aeff0ddd6e63273a068b04353d9d?s=100) |
