@@ -39,11 +39,19 @@ Match {
 
 * Timezone
 
-By default, the timezone is `America/New_York`. You can set your own with:
+By default, the timezone is `Europe/Madrid`. You can set your own with:
 
 ```js
-matches('spain', 'real-madrid', { timezone: 'Europe/Madrid' })
+matches('spain', 'real-madrid', { timezone: 'America/New_York' })
+matches('england', 'arsenal', { timezone: 'Europe/London' })
 ```
+
+> For now, use one of this timezones for better results:
+
+* `Europe/Madrid`
+* `Europe/London`
+* `America/New_York`
+
 
 ## Contribute
 

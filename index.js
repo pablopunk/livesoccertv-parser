@@ -9,7 +9,33 @@ let $ // cheerio will be initialized with the html body
 
 const baseUrl = 'http://www.livesoccertv.com/teams'
 
-const getBody = async url => (await microfetch(url)).text()
+let timezone = 'Europe/Madrid'
+// To get the right tv channels
+let Cookie
+
+const getBody = async url => {
+  switch (timezone) {
+    case 'Europe/Madrid':
+      Cookie =
+        'live=live; u_scores=on; u_continent=Europe; u_country=Spain; u_country_code=ES; u_timezone=Europe%2FMadrid; u_lang=en; u_locale=en_US;'
+      break
+    case 'Europe/London':
+      Cookie =
+        'live=live; u_scores=on; u_continent=Europe; u_country=England; u_country_code=UK; u_timezone=Europe%2FLondon; u_lang=en; u_locale=en_UK;'
+      break
+    case 'America/New_York':
+      Cookie =
+        'live=live; u_scores=on; u_continent=North+America; u_country=USA; u_country_code=US; u_timezone=America%2FNew_York; u_lang=en; u_locale=en_US;'
+      break
+    default:
+      Cookie =
+        'live=live; u_scores=on; u_continent=Europe; u_country=Spain; u_country_code=ES; u_timezone=Europe%2FMadrid; u_lang=en; u_locale=en_US;'
+      break
+  }
+  const headers = {Cookie}
+
+  return (await microfetch(url, {headers})).text()
+}
 const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
 
 const adjustLocalTime = (time, timezone) =>
@@ -83,6 +109,9 @@ const parseMatches = body => {
 }
 
 module.exports = async (country, team, options = {}) => {
+  if (options.timezone) {
+    timezone = options.timezone
+  }
   const body = await getBody(getTeamUrl(country, team))
   let matches = parseMatches(body)
 
