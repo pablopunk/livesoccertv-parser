@@ -18,9 +18,9 @@ test('Test Barcelona', async t => {
 
 test('Test with timezone', async t => {
   const matches1 = await m('england', 'arsenal')
-  const matches2 = await m('england', 'arsenal', { timezone: 'Europe/Madrid' })
-  const time1 = moment(matches1[0].time, 'hh:mm')
-  const time2 = moment(matches2[0].time, 'hh:mm')
+  const matches2 = await m('england', 'arsenal', { timezone: 'America/New_York' })
+  const time1 = moment(matches1[0].time, 'LT')
+  const time2 = moment(matches2[0].time, 'LT')
   const diff = time1.diff(time2, 'hours')
   t.is(diff, 6)
 })

@@ -42,7 +42,7 @@ const adjustLocalTime = (time, timezone) =>
   moment(time, 'hh:mm')
     .clone()
     .tz(timezone)
-    .format('hh:mm')
+    .format('LT')
 
 const parsePlayed = n =>
   $('tr.matchrow > td.livecell > span')
@@ -118,12 +118,10 @@ module.exports = async (country, team, options = {}) => {
   matches = convertObjectsToArray(matches)
   matches = matches.filter(m => m.time !== 'Invalid date' && m.tvs.length !== 0)
 
-  if (options.timezone) {
-    matches = matches.map(m => ({
-      ...m,
-      time: adjustLocalTime(m.time, options.timezone)
-    }))
-  }
+  matches = matches.map(m => ({
+    ...m,
+    time: adjustLocalTime(m.time, timezone)
+  }))
 
   return matches
 }
