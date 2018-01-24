@@ -44,6 +44,10 @@ const adjustLocalTime = (time, timezone) =>
     .tz(timezone)
     .format('LT')
 
+const parseLive = n =>
+  $('tr.matchrow > td.livecell > span')
+    .eq(n)
+    .attr('class') === 'narrow live'
 const parsePlayed = n =>
   $('tr.matchrow > td.livecell > span')
     .eq(n)
@@ -91,6 +95,7 @@ const convertObjectsToArray = objects => {
 
 class Match {
   constructor (n) {
+    this.live = parseLive(n)
     this.played = parsePlayed(n)
     this.competition = parseCompetition(n)
     this.date = parseDate(n)

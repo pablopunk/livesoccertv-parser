@@ -21,10 +21,11 @@ Match object:
 
 ```js
 Match {
-  played: false,
+  live: false
+  played: true,
   competition: 'Supercopa de España',
   date: 'August 13',
-  time: '16:00',
+  time: '4:00 PM',
   game: 'Barcelona vs Real Madrid',
   tvs:
     [
