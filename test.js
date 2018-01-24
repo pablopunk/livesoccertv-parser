@@ -16,8 +16,6 @@ test('Test Barcelona', async t => {
   await basicTest(t, 'spain', 'barcelona')
 })
 
-m('england', 'arsenal').then(console.log)
-
 test('Test with timezone', async t => {
   const matches1 = await m('england', 'arsenal')
   const matches2 = await m('england', 'arsenal', { timezone: 'America/New_York' })
