@@ -45,9 +45,13 @@ const adjustLocalTime = (time, timezone) =>
     .format('LT')
 
 const parseLive = n =>
-  $('tr.matchrow > td.livecell > span')
+  $('tr.matchrow > td.timecell')
     .eq(n)
-    .attr('class') === 'narrow live'
+    .find('span')
+    .eq(2)
+    .find('span')
+    .eq(0)
+    .attr('class') === 'ts started'
 const parsePlayed = n =>
   $('tr.matchrow > td.livecell > span')
     .eq(n)
@@ -60,13 +64,12 @@ const parseDate = n =>
   $('tr.matchrow > td.datecell > a > span')
     .eq(n)
     .text()
-const parseTime = n => {
-  return $('tr.matchrow > td.timecell')
+const parseTime = n =>
+  $('tr.matchrow > td.timecell')
     .eq(n)
     .find('span')
     .eq(2)
     .text()
-}
 const parseGame = n =>
   $('tr.matchrow > td.timecell')
     .next('td')
