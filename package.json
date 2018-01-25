@@ -28,9 +28,9 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "isomorphic-fetch": "^2.2.1",
-    "microfetch": "^1.1.0",
     "moment": "^2.20.1",
-    "moment-timezone": "^0.5.14"
+    "moment-timezone": "^0.5.14",
+    "prepend-url": "^1.0.2"
   },
   "devDependencies": {
     "ava": "^0.22.0",

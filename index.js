@@ -1,13 +1,14 @@
 const fetch = require('isomorphic-fetch')
+const prepend = require('prepend-url')
 const moment = require('moment')
-const microfetch = require('microfetch')(fetch)
 const cheerio = require('cheerio')
 require('moment-timezone')
 moment.tz.setDefault('America/New_York')
 
 let $ // cheerio will be initialized with the html body
 
-const baseUrl = 'http://www.livesoccertv.com/teams'
+let baseUrl = 'http://www.livesoccertv.com/teams'
+baseUrl = prepend(baseUrl, 'https://microsec.pw')
 
 let timezone = 'Europe/Madrid'
 // To get the right tv channels
@@ -34,7 +35,7 @@ const getBody = async url => {
   }
   const headers = {Cookie}
 
-  return (await microfetch(url, {headers})).text()
+  return (await fetch(url, {headers})).text()
 }
 const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
 
