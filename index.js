@@ -45,14 +45,14 @@ const adjustLocalTime = (time, timezone) =>
     .tz(timezone)
     .format('LT')
 
-const parseLive = n =>
-  $('tr.matchrow > td.timecell')
-    .eq(n)
-    .find('span')
-    .eq(2)
-    .find('span')
-    .eq(0)
-    .attr('class') === 'ts started'
+const parseLive = n => {
+  const el1 = $('tr.matchrow > td.timecell > span.ftime > span.ts').eq(n)
+  const el2 = $('tr.matchrow > td.timecell > span.ftime > span.inprogress').eq(n)
+  if (el1.attr('class') === 'ts started' && el2.attr('title') === undefined) {
+    return true
+  }
+  return false
+}
 const parsePlayed = n =>
   $('tr.matchrow > td.livecell > span')
     .eq(n)
