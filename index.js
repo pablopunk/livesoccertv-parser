@@ -1,4 +1,4 @@
-const fetch = require('isomorphic-fetch')
+const {get} = require('axios')
 const prepend = require('prepend-url')
 const moment = require('moment')
 const cheerio = require('cheerio')
@@ -35,7 +35,7 @@ const getBody = async url => {
   }
   const headers = {Cookie}
 
-  return (await fetch(url, {headers})).text()
+  return (await get(url, {headers})).data
 }
 const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
 
