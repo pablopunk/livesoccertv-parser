@@ -1,41 +1,50 @@
-const {get} = require('axios')
+const {get} = require('got')
 const prepend = require('prepend-url')
 const moment = require('moment')
 const cheerio = require('cheerio')
+const cityTimezones = require('city-timezones')
+
 require('moment-timezone')
-moment.tz.setDefault('America/New_York')
+const DEFAULT_TIMEZONE = 'America/New_York'
+moment.tz.setDefault(DEFAULT_TIMEZONE)
 
 let $ // cheerio will be initialized with the html body
 
 let baseUrl = 'http://www.livesoccertv.com/teams'
 baseUrl = prepend(baseUrl, 'https://microsec.pw')
 
-let timezone = 'Europe/Madrid'
-// To get the right tv channels
-let Cookie
-
-const getBody = async url => {
-  switch (timezone) {
-    case 'Europe/Madrid':
-      Cookie =
-        'live=live; u_scores=on; u_continent=Europe; u_country=Spain; u_country_code=ES; u_timezone=Europe%2FMadrid; u_lang=es; u_locale=en_ES;'
-      break
-    case 'Europe/London':
-      Cookie =
-        'live=live; u_scores=on; u_continent=Europe; u_country=England; u_country_code=UK; u_timezone=Europe%2FLondon; u_lang=en; u_locale=en_UK;'
-      break
-    case 'America/New_York':
-      Cookie =
-        'live=live; u_scores=on; u_continent=North+America; u_country=USA; u_country_code=US; u_timezone=America%2FNew_York; u_lang=en; u_locale=en_US;'
-      break
-    default:
-      Cookie =
-        'live=live; u_scores=on; u_continent=Europe; u_country=Spain; u_country_code=ES; u_timezone=Europe%2FMadrid; u_lang=es; u_locale=en_ES;'
-      break
+const splitTimezone = tz => tz.split('/')
+const urlifyTimezone = tz => tz.replace('/', '%2F')
+const getCountry = (city, tz) => {
+  const cities = cityTimezones.lookupViaCity(city)
+  for (const c of cities) {
+    if (c.timezone === tz) {
+      return c
+    }
   }
-  const headers = {Cookie}
+  return cities[0]
+}
 
-  return (await get(url, {headers})).data
+const getBody = async (url, timezone) => {
+  const [continent, city] = splitTimezone(timezone)
+  let {iso3: countryCode, iso2: lang} = getCountry(city.replace('_', ' '), timezone)
+  lang = lang.toLowerCase()
+  if (lang === 'us' || lang === 'gb') {
+    lang = 'en'
+  }
+  if (countryCode === 'GBR') {
+    countryCode = 'UK'
+    lang = 'en'
+  }
+  const locale = `${lang}_${countryCode}`
+
+  const Cookie = `live=live; u_scores=on; u_continent=${continent}; u_country=${countryCode}; u_country_code=${countryCode}; u_timezone=${urlifyTimezone(timezone)}; u_lang=${lang}; u_locale=${locale}`
+  const headers = {
+    'Cache-Control': 'max-age=0',
+    Cookie
+  }
+
+  return (await get(url, {headers})).body
 }
 const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
 
@@ -118,10 +127,8 @@ const parseMatches = body => {
 }
 
 module.exports = async (country, team, options = {}) => {
-  if (options.timezone) {
-    timezone = options.timezone
-  }
-  const body = await getBody(getTeamUrl(country, team))
+  const timezone = options.timezone || DEFAULT_TIMEZONE
+  const body = await getBody(getTeamUrl(country, team), timezone)
   let matches = parseMatches(body)
 
   matches = convertObjectsToArray(matches)
