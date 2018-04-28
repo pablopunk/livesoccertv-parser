@@ -1,6 +1,6 @@
 {
   "name": "livesoccertv-parser",
-  "version": "4.3.3",
+  "version": "5.0.0",
   "description": "Parse match info from livesoccertv",
   "main": "build.js",
   "scripts": {
