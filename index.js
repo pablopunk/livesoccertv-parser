@@ -1,5 +1,4 @@
 const {get} = require('got')
-const prepend = require('prepend-url')
 const moment = require('moment')
 const cheerio = require('cheerio')
 const cityTimezones = require('city-timezones')
@@ -11,7 +10,6 @@ moment.tz.setDefault(DEFAULT_TIMEZONE)
 let $ // cheerio will be initialized with the html body
 
 let baseUrl = 'http://www.livesoccertv.com/teams'
-baseUrl = prepend(baseUrl, 'https://microsec.pw')
 
 const splitTimezone = tz => tz.split('/')
 const urlifyTimezone = tz => tz.replace('/', '%2F')

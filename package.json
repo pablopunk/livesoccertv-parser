@@ -30,8 +30,7 @@
     "city-timezones": "^1.0.3",
     "got": "^8.3.0",
     "moment": "^2.20.1",
-    "moment-timezone": "^0.5.14",
-    "prepend-url": "^1.0.2"
+    "moment-timezone": "^0.5.14"
   },
   "devDependencies": {
     "ava": "^0.22.0",
