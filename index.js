@@ -55,7 +55,7 @@ const adjustLocalTime = (time, timezone) =>
 const parseLive = n => {
   const el1 = $('tr.matchrow > td.timecell > span.ftime > span.ts').eq(n)
   const el2 = $('tr.matchrow > td.timecell > span.ftime > span.inprogress').eq(n)
-  if (el1.attr('class') === 'ts started' && el2.attr('title') === undefined) {
+  if (el1.attr('class') === 'ts started' && el2.attr('class') === 'inprogress') {
     return true
   }
   return false
