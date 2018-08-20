@@ -33,7 +33,7 @@
     "moment-timezone": "^0.5.14"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
+    "ava": "^0.25.0",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2017": "^6.24.1",
