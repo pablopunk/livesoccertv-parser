@@ -7,7 +7,7 @@
     "dev": "ava --watch",
     "test": "standard index.js && ava",
     "build": "babel index.js --out-file build.js",
-    "prepublish": "npm run build && npm test"
+    "prepare": "npm run build && npm test"
   },
   "keywords": [
     "soccer",
