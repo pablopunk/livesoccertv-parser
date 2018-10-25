@@ -6,6 +6,8 @@ const basicTest = async (t, country, team) => {
   const matches = await m(country, team)
   t.true(Array.isArray(matches))
   t.true(matches.length > 0)
+
+  return matches
 }
 
 test('Test Real Madrid', async t => {
