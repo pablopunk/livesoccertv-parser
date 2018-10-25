@@ -23,24 +23,46 @@ const getCountry = (city, tz) => {
   return cities[0]
 }
 
-const getBody = async (url, timezone) => {
+const badCountryCodes = {
+  'ESP': 'ES',
+  'USA': 'US',
+  'GBR': 'UK',
+  'RUS': 'RU'
+}
+
+const badLangCodes = {
+  'us': 'en',
+  'gb': 'en'
+}
+
+const fixCountryCode = (country) => {
+  for (const bad in badCountryCodes) {
+    country = country.replace(bad, badCountryCodes[bad])
+  }
+
+  return country
+}
+
+const fixLangCode = (lang) => {
+  for (const bad in badLangCodes) {
+    lang = lang.replace(bad, badLangCodes[bad])
+  }
+
+  return lang
+}
+
+const getBody = async ({ country, team, timezone }) => {
+  const url = getTeamUrl(country, team)
   const [continent, city] = splitTimezone(timezone)
   let {iso3: countryCode, iso2: lang} = getCountry(city.replace('_', ' '), timezone)
   lang = lang.toLowerCase()
-  if (lang === 'us' || lang === 'gb') {
-    lang = 'en'
-  }
-  if (countryCode === 'GBR') {
-    countryCode = 'UK'
-    lang = 'en'
-  }
+  lang = fixLangCode(lang)
+  countryCode = fixCountryCode(countryCode)
   const locale = `${lang}_${countryCode}`
 
-  const Cookie = `live=live; u_scores=on; u_continent=${continent}; u_country=${countryCode}; u_country_code=${countryCode}; u_timezone=${urlifyTimezone(timezone)}; u_lang=${lang}; u_locale=${locale}`
-  const headers = {
-    'Cache-Control': 'max-age=0',
-    Cookie
-  }
+  const Cookie = `live=live; u_scores=on; u_continent=${continent}; u_country=${country}; u_country_code=${countryCode}; u_timezone=${urlifyTimezone(timezone)}; u_lang=${lang}; u_locale=${locale}`
+  const headers = {Cookie}
+  console.log(headers)
 
   return (await get(url, {headers})).body
 }
@@ -126,7 +148,7 @@ const parseMatches = body => {
 
 module.exports = async (country, team, options = {}) => {
   const timezone = options.timezone || DEFAULT_TIMEZONE
-  const body = await getBody(getTeamUrl(country, team), timezone)
+  const body = await getBody({ country, team, timezone })
   let matches = parseMatches(body)
 
   matches = convertObjectsToArray(matches)
