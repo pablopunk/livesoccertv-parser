@@ -5,9 +5,9 @@
   "main": "build.js",
   "scripts": {
     "dev": "ava --watch",
-    "test": "standard index.js && npm run build && ava",
+    "test": "standard index.js && ava",
     "build": "babel index.js --out-file build.js",
-    "prepublish": "npm test"
+    "prepublish": "npm run build && npm test"
   },
   "keywords": [
     "soccer",
