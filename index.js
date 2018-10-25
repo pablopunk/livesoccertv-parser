@@ -62,7 +62,6 @@ const getBody = async ({ country, team, timezone }) => {
 
   const Cookie = `live=live; u_scores=on; u_continent=${continent}; u_country=${country}; u_country_code=${countryCode}; u_timezone=${urlifyTimezone(timezone)}; u_lang=${lang}; u_locale=${locale}`
   const headers = {Cookie}
-  console.log(headers)
 
   return (await get(url, {headers})).body
 }
