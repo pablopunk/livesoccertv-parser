@@ -1,0 +1,113 @@
+[
+  {
+    "live":false,
+    "played":true,
+    "competition":"Liga Juvenil de la UEFA",
+    "date":"oct 2",
+    "time":"7:00 AM",
+    "game":"CSKA Moskva Sub-19 vs Real Madrid Sub-19",
+    "tvs":[
+      "Movistar+"
+    ]
+  },
+  {
+    "live":false,
+    "played":true,
+    "competition":"Liga de Campeones de la UEFA",
+    "date":"oct 2",
+    "time":"3:00 PM",
+    "game":"CSKA Moskva 1 - 0 Real Madrid",
+    "tvs":[
+      "Movistar+"
+    ]
+  },
+  {
+    "live":false,
+    "played":true,
+    "competition":"La Liga",
+    "date":"oct 6",
+    "time":"12:30 PM",
+    "game":"Deportivo Alavés 1 - 0 Real Madrid",
+    "tvs":[
+      "beIN Sports Connect España"
+    ]
+  },
+  {
+    "live":false,
+    "played":true,
+    "competition":"La Liga",
+    "date":"oct 20",
+    "time":"7:00 AM",
+    "game":"Real Madrid 1 - 2 Levante",
+    "tvs":[
+      "beIN Sports Connect España"
+    ]
+  },
+  {
+    "live":false,
+    "played":true,
+    "competition":"Liga de Campeones de la UEFA",
+    "date":"oct 23",
+    "time":"3:00 PM",
+    "game":"Real Madrid 2 - 1 Viktoria Plzeň",
+    "tvs":[
+      "Movistar+"
+    ]
+  },
+  {
+    "live":false,
+    "played":false,
+    "competition":"La Liga",
+    "date":"oct 28",
+    "time":"11:15 AM",
+    "game":"Barcelona vs Real Madrid",
+    "tvs":[
+      "beIN Sports Connect España"
+    ]
+  },
+  {
+    "live":false,
+    "played":false,
+    "competition":"Copa del Rey",
+    "date":"oct 31",
+    "time":"2:30 PM",
+    "game":"Melilla vs Real Madrid",
+    "tvs":[
+      "beIN Sports Connect España"
+    ]
+  },
+  {
+    "live":false,
+    "played":false,
+    "competition":"La Liga",
+    "date":"nov 3",
+    "time":"11:15 AM",
+    "game":"Real Madrid vs Real Valladolid",
+    "tvs":[
+      "beIN Sports Connect España"
+    ]
+  },
+  {
+    "live":false,
+    "played":false,
+    "competition":"Liga de Campeones de la UEFA",
+    "date":"nov 7",
+    "time":"3:00 PM",
+    "game":"Viktoria Plzeň vs Real Madrid",
+    "tvs":[
+      "Movistar+"
+    ]
+  },
+  {
+    "live":false,
+    "played":false,
+    "competition":"La Liga",
+    "date":"nov 11",
+    "time":"2:45 PM",
+    "game":"Celta de Vigo vs Real Madrid",
+    "tvs":[
+      "Movistar+",
+      "Movistar Partidazo"
+    ]
+  }
+]

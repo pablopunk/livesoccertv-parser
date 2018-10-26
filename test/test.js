@@ -1,6 +1,7 @@
 import test from 'ava'
+import fs from 'fs'
 import moment from 'moment'
-import m from './index' // import not built code can help when getting errors on tests
+import m from '../index' // import not built code can help when getting errors on tests
 
 const basicTest = async (t, country, team) => {
   const matches = await m(country, team)
@@ -25,4 +26,12 @@ test('Test timezones', async t => {
   const timeInEnglad = moment(inEngland[0].time, 'LT')
   const diff = timeInSpain.diff(timeInEnglad, 'hours')
   t.is(diff, 1)
+})
+
+test('Static html', async t => {
+  const html = fs.readFileSync('./test/real-madrid.html').toString()
+  const matches = m.parseMatchesFromHtml(html)
+  const results = require('./real-madrid.json')
+
+  t.deepEqual(matches, results)
 })

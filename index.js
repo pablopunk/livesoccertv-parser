@@ -138,18 +138,11 @@ class Match {
   }
 }
 
-const parseMatches = body => {
+const parseMatchesFromHtml = (body, timezone = DEFAULT_TIMEZONE) => {
   $ = cheerio.load(body)
   const matchRows = $('tr.matchrow')
 
-  return matchRows.map(i => new Match(i))
-}
-
-module.exports = async (country, team, options = {}) => {
-  const timezone = options.timezone || DEFAULT_TIMEZONE
-  const body = await getBody({ country, team, timezone })
-  let matches = parseMatches(body)
-
+  let matches = matchRows.map(i => new Match(i))
   matches = convertObjectsToArray(matches)
   matches = matches.filter(m => m.time !== 'Invalid date' && m.tvs.length !== 0)
 
@@ -160,3 +153,13 @@ module.exports = async (country, team, options = {}) => {
 
   return matches
 }
+
+module.exports = async (country, team, options = {}) => {
+  const timezone = options.timezone || DEFAULT_TIMEZONE
+  const body = await getBody({ country, team, timezone })
+  const matches = parseMatchesFromHtml(body, timezone)
+
+  return matches
+}
+
+module.exports.parseMatchesFromHtml = parseMatchesFromHtml
