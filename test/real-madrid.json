@@ -55,7 +55,7 @@
     ]
   },
   {
-    "live":false,
+    "live":true,
     "played":false,
     "competition":"La Liga",
     "date":"oct 28",
