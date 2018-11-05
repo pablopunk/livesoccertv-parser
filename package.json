@@ -10,7 +10,7 @@
     "dev": "ava --watch",
     "lint": "standard index.js",
     "build": "babel index.js --out-file build.js",
-    "prepare": "npm run build && npm test"
+    "prepublishOnly": "npm run build && npm test"
   },
   "bugs": {
     "url": "https://github.com/pablopunk/livesoccertv-parser/issues",
