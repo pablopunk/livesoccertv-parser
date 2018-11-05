@@ -1,4 +1,4 @@
-const {get} = require('got')
+const { get } = require('got')
 const moment = require('moment')
 const cheerio = require('cheerio')
 const cityTimezones = require('city-timezones')
@@ -54,16 +54,16 @@ const fixLangCode = (lang) => {
 const getBody = async ({ country, team, timezone }) => {
   const url = getTeamUrl(country, team)
   const [continent, city] = splitTimezone(timezone)
-  let {iso3: countryCode, iso2: lang} = getCountry(city.replace('_', ' '), timezone)
+  let { iso3: countryCode, iso2: lang } = getCountry(city.replace('_', ' '), timezone)
   lang = lang.toLowerCase()
   lang = fixLangCode(lang)
   countryCode = fixCountryCode(countryCode)
   const locale = `${lang}_${countryCode}`
 
   const Cookie = `live=live; u_scores=on; u_continent=${continent}; u_country=${country}; u_country_code=${countryCode}; u_timezone=${urlifyTimezone(timezone)}; u_lang=${lang}; u_locale=${locale}`
-  const headers = {Cookie}
+  const headers = { Cookie }
 
-  return (await get(url, {headers})).body
+  return (await get(url, { headers })).body
 }
 const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
 

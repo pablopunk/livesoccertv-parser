@@ -2,29 +2,23 @@
   "name": "livesoccertv-parser",
   "version": "5.1.4",
   "description": "Parse match info from livesoccertv",
-  "main": "build.js",
+  "author": "Pablo Varela <pablovarela182@gmail.com>",
   "scripts": {
+    "test": "npm run lint && npm run test-coverage",
+    "test-coverage": "nyc ava",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "dev": "ava --watch",
-    "test": "standard index.js && ava",
+    "lint": "standard index.js",
     "build": "babel index.js --out-file build.js",
     "prepare": "npm run build && npm test"
   },
-  "keywords": [
-    "soccer",
-    "football",
-    "fútbol",
-    "live",
-    "parser",
-    "games",
-    "tv",
-    "tvs",
-    "channel",
-    "guide",
-    "schedule",
-    "livesoccertv"
+  "bugs": {
+    "url": "https://github.com/pablopunk/livesoccertv-parser/issues",
+    "email": "pablovarela182@gmail.com"
+  },
+  "contributors": [
+    "Pablo Varela <pablovarela182@gmail.com>"
   ],
-  "author": "Pablo Varela",
-  "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "city-timezones": "^1.0.3",
@@ -33,18 +27,40 @@
     "moment-timezone": "^0.5.14"
   },
   "devDependencies": {
-    "ava": "^0.25.0",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2017": "^6.24.1",
+    "ava": "*",
+    "codecov": "*",
+    "nyc": "*",
     "standard": "*"
+  },
+  "homepage": "https://github.com/pablopunk/livesoccertv-parser",
+  "keywords": [
+    "soccer",
+    "football",
+    "futbol",
+    "live",
+    "parser",
+    "games",
+    "tv",
+    "tvs",
+    "channels",
+    "guide",
+    "schedule",
+    "livesoccertv"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "html",
+      "text"
+    ]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pablopunk/livesoccertv-parser.git"
-  },
-  "bugs": {
-    "url": "https://github.com/pablopunk/livesoccertv-parser/issues"
-  },
-  "homepage": "https://github.com/pablopunk/livesoccertv-parser#readme"
+    "url": "https://github.com/pablopunk/livesoccertv-parser"
+  }
 }

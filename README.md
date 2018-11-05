@@ -1,6 +1,19 @@
-# livesoccertv-parser [![npm](https://img.shields.io/npm/dt/livesoccertv-parser.svg)](https://www.npmjs.com/package/livesoccertv-parser)
+# livesoccertv-parser
 
 >© All rights reserved to [Live soccer TV](http://www.livesoccertv.com/)
+
+<p align="center">
+  <a href="https://travis-ci.org/pablopunk/livesoccertv-parser"><img src="https://img.shields.io/travis/pablopunk/livesoccertv-parser.svg" /> </a>
+  <a href="https://codecov.io/gh/pablopunk/livesoccertv-parser"><img src="https://img.shields.io/codecov/c/github/pablopunk/livesoccertv-parser.svg" /> </a>
+  <a href="https://standardjs.com/"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" /> </a>
+  <a href="https://github.com/pablopunk/miny"><img src="https://img.shields.io/badge/made_with-miny-1eced8.svg" /> </a>
+  <a href="https://www.npmjs.com/package/livesoccertv-parser"><img src="https://img.shields.io/npm/dt/livesoccertv-parser.svg" /></a>
+</p>
+
+<p align="center">
+  <i>Parse games info from livesoccertv</i>
+</p>
+
 
 ## Install
 
@@ -56,7 +69,8 @@ Feel free to open an _issue_ or a _PR_.
 
 ## License
 
-__ISC license__
+MIT
+
 
 ## Related
 
@@ -65,6 +79,7 @@ __ISC license__
 
 ## Author
 
-| ![me](https://www.gravatar.com/avatar/fa50aeff0ddd6e63273a068b04353d9d?s=100) |
-| ----------------------------------------------------------------------------- |
-| © 2017 [Pablo Varela](https://pablo.life)                                     |
+| ![me](https://gravatar.com/avatar/fa50aeff0ddd6e63273a068b04353d9d?size=100)           |
+| --------------------------------- |
+| © 2018 [Pablo Varela](https://pablo.life)   |
+
