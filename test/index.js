@@ -1,7 +1,7 @@
-import test from 'ava'
-import fs from 'fs'
-import moment from 'moment'
-import m from '../index' // import not built code can help when getting errors on tests
+const test = require('myass')
+const fs = require('fs')
+const moment = require('moment')
+const m = require('../index') // dont import built code - can help when getting errors on tests
 
 const basicTest = async (t, country, team) => {
   const matches = await m(country, team)
@@ -33,5 +33,5 @@ test('Static html', async t => {
   const matches = m.parseMatchesFromHtml(html)
   const results = require('./real-madrid.json')
 
-  t.deepEqual(matches, results)
+  t.is(matches, results)
 })

@@ -5,9 +5,8 @@
   "author": "Pablo Varela <pablovarela182@gmail.com>",
   "scripts": {
     "test": "npm run lint && npm run test-coverage",
-    "test-coverage": "nyc ava",
+    "test-coverage": "nyc myass",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "dev": "ava --watch",
     "lint": "standard index.js",
     "build": "babel index.js --out-file build.js",
     "prepublishOnly": "npm run build && npm test"
@@ -30,8 +29,8 @@
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2017": "^6.24.1",
-    "ava": "*",
     "codecov": "*",
+    "myass": "*",
     "nyc": "*",
     "standard": "*"
   },
