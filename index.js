@@ -2,6 +2,8 @@ const { get } = require('got')
 const moment = require('moment')
 const cheerio = require('cheerio')
 const cityTimezones = require('city-timezones')
+const logos = require('./logos');
+const classification = require('./classification');
 
 require('moment-timezone')
 const DEFAULT_TIMEZONE = 'America/New_York'
@@ -123,7 +125,7 @@ const convertObjectsToArray = objects => {
 }
 
 class Match {
-  constructor (n) {
+  constructor(n) {
     this.live = parseLive(n)
     this.played = parsePlayed(n)
     this.competition = parseCompetition(n)
@@ -151,12 +153,24 @@ const parseMatchesFromHtml = (body, timezone = DEFAULT_TIMEZONE) => {
   return matches
 }
 
-module.exports = async (country, team, options = {}) => {
+module.exports.matches = async (country, team, options = {}) => {
   const timezone = options.timezone || DEFAULT_TIMEZONE
   const body = await getBody({ country, team, timezone })
   const matches = parseMatchesFromHtml(body, timezone)
 
   return matches
+}
+
+module.exports.logo = async (country, team, options = {}, path) => {
+  const timezone = options.timezone || DEFAULT_TIMEZONE
+  
+  return logos.donwloadLogos(country, team, timezone, path)
+}
+
+module.exports.classification = async (country, team, options = {}) => {
+  const timezone = options.timezone || DEFAULT_TIMEZONE
+  
+  return classification.classification(country, team, timezone)
 }
 
 module.exports.parseMatchesFromHtml = parseMatchesFromHtml
