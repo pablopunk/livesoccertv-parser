@@ -3,7 +3,7 @@ const moment = require('moment')
 const cheerio = require('cheerio')
 const cityTimezones = require('city-timezones')
 const fs = require('fs')
-const request = require('request');
+const request = require('request')
 
 require('moment-timezone')
 const DEFAULT_TIMEZONE = 'America/New_York'
@@ -70,7 +70,7 @@ const getBody = async ({ country, team, timezone }) => {
 const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
 
 const parseLogo = n =>
-  $('td[width="100"]').children('img').eq(0).attr('src');
+  $('td[width="100"]').children('img').eq(0).attr('src')
 
 class Logos {
   constructor(n) {
@@ -78,28 +78,25 @@ class Logos {
   }
 }
 
-const parseLogoFromHtml = (body, timezone = DEFAULT_TIMEZONE) => {
+const parseLogoFromHtml = (body) => {
   $ = cheerio.load(body)
-  let matches = new Logos();
+  let matches = new Logos()
 
   return 'http:' + matches.logo
 }
 
 const download = (uri, filename, callback) => {
-  request.head(uri, (err, res, body) => {
+  request.head(uri, (err) => {
     if (err) { return }
-    request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-  });
-};
+    request(uri).pipe(fs.createWriteStream(filename)).on('close', callback)
+  })
+}
 
-module.exports.donwloadLogos = async (country, team, options = {}, path) => {
+module.exports.donwloadLogos = async (country, team, options, path) => {
   const timezone = options.timezone || DEFAULT_TIMEZONE
   const body = await getBody({ country, team, timezone })
-  console.log(body);
   const matches = parseLogoFromHtml(body, timezone)
-  download(matches, path + team + '.png', () => { });
-
-  return matches
+  download(matches, path + team + '.png', () => { })
 }
 
 module.exports.parseLogoFromHtml = parseLogoFromHtml

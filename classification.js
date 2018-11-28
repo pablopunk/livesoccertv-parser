@@ -1,7 +1,7 @@
-const { get } = require('got');
-const moment = require('moment');
-const cheerio = require('cheerio');
-const cityTimezones = require('city-timezones');
+const { get } = require('got')
+const moment = require('moment')
+const cheerio = require('cheerio')
+const cityTimezones = require('city-timezones')
 
 require('moment-timezone')
 const DEFAULT_TIMEZONE = 'America/New_York'
@@ -68,8 +68,8 @@ const getTeamUrl = (country, team) => {
   return `${baseUrl}/${country}/${team}`
 }
 const parseClassification = n => {
-  teams = [];
-  position = 1;
+  teams = []
+  position = 1
   $('td.medium')
     .next().children('a')
     .each((i, item) => {
@@ -86,11 +86,11 @@ const parseClassification = n => {
           diff: $(item).parent().next().next().next().next().next().next().next().text(),
           points: $(item).parent().next().next().next().next().next().next().next().next().text()
         })
-        position++;
+        position++
       }
     })
 
-  return teams;
+  return teams
 }
 
 class Classification {
@@ -101,7 +101,7 @@ class Classification {
 
 const parseClassificationFromHtml = (body, timezone = DEFAULT_TIMEZONE) => {
   $ = cheerio.load(body)
-  let classification = new Classification();
+  let classification = new Classification()
   return classification
 }
 
