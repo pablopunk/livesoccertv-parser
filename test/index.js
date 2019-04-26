@@ -25,7 +25,7 @@ test('Test timezones', async t => {
   const timeInSpain = moment(inSpain[0].time, 'LT')
   const timeInEnglad = moment(inEngland[0].time, 'LT')
   const diff = timeInSpain.diff(timeInEnglad, 'hours')
-  t.is(diff, 2)
+  t.is(diff, 1)
 })
 
 test('Static html', async t => {

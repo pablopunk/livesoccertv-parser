@@ -67,11 +67,14 @@ const getBody = async ({ country, team, timezone }) => {
 }
 const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
 
-const adjustLocalTime = (time, timezone) =>
-  moment(time, 'hh:mm')
+const adjustLocalTime = (time, timezone) => {
+  const resultDate = moment(time, 'hh:mm')
     .clone()
     .tz(timezone)
     .format('LT')
+
+  return resultDate !== 'Invalid date' ? resultDate : time
+}
 
 const parseLive = n =>
   $('tr.matchrow')
@@ -141,7 +144,7 @@ const parseMatchesFromHtml = (body, timezone = DEFAULT_TIMEZONE) => {
 
   let matches = matchRows.map(i => new Match(i))
   matches = convertObjectsToArray(matches)
-  matches = matches.filter(m => m.time !== 'Invalid date' && m.tvs.length !== 0)
+  matches = matches.filter(m => m.tvs.length !== 0)
 
   matches = matches.map(m => ({
     ...m,
