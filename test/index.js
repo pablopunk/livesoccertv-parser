@@ -21,11 +21,11 @@ test('Test Barcelona', async t => {
 
 test('Test timezones', async t => {
   const inEngland = await m('england', 'arsenal', { timezone: 'Europe/Madrid' })
-  const inSpain = await m('england', 'arsenal', { timezone: 'Europe/Moscow' })
+  const inSpain = await m('england', 'arsenal', { timezone: 'Europe/London' })
   const timeInSpain = moment(inSpain[0].time, 'LT')
   const timeInEnglad = moment(inEngland[0].time, 'LT')
   const diff = timeInSpain.diff(timeInEnglad, 'hours')
-  t.is(diff, 1)
+  t.is(diff, -1)
 })
 
 test('Static html', async t => {
