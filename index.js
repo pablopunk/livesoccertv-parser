@@ -9,7 +9,7 @@ moment.tz.setDefault(DEFAULT_TIMEZONE)
 
 let $ // cheerio will be initialized with the html body
 
-let baseUrl = 'http://www.livesoccertv.com/teams'
+const baseUrl = 'http://www.livesoccertv.com/teams'
 
 const splitTimezone = tz => tz.split('/')
 const urlifyTimezone = tz => tz.replace('/', '%2F')
@@ -24,15 +24,15 @@ const getCountry = (city, tz) => {
 }
 
 const badCountryCodes = {
-  'ESP': 'ES',
-  'USA': 'US',
-  'GBR': 'UK',
-  'RUS': 'RU'
+  ESP: 'ES',
+  USA: 'US',
+  GBR: 'UK',
+  RUS: 'RU'
 }
 
 const badLangCodes = {
-  'us': 'en',
-  'gb': 'en'
+  us: 'en',
+  gb: 'en'
 }
 
 const fixCountryCode = (country) => {
