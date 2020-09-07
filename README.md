@@ -74,7 +74,7 @@ MIT
 
 ## Related
 
-More at [pablo.pink](https://pablo.pink)
+More at [pablo.im](https://pablo.im)
 
 * [microsoccer](https://github.com/pablopunk/microsoccer): Microservice to fetch soccer games schedules and tv channels.
 
@@ -83,5 +83,5 @@ More at [pablo.pink](https://pablo.pink)
 
 | ![me](https://gravatar.com/avatar/fa50aeff0ddd6e63273a068b04353d9d?size=100)           |
 | --------------------------------- |
-| © 2018 [Pablo Varela](https://pablo.pink)   |
+| © 2018 [Pablo Varela](https://pablo.im)   |
 
