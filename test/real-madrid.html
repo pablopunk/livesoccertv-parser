@@ -118,46 +118,6 @@
     <div id="body_main">
       <div class="header">
         <h1 title="Live Soccer TV" style="padding-left:20px;"><a href="//www.livesoccertv.com/es/"><img src="//cdn.livesoccertv.com/images/logo55.png" width="116" height="55" border="0" alt="Live Soccer TV" /></a></h1>
-        <script language="javascript">
-          <!--
-          $(function(){
-            $(".search").keyup(function() { 
-              var searchid = $(this).val();
-              var dataString = 'search='+ searchid;
-              var lang = $('form[name=searchform]').attr("lang");
-              var posturl = "/include/autocomplete.php";
-              if(lang!='en') posturl = '/'+lang+posturl;
-              if(searchid!='' && searchid.length>2) { // Run search only if more than one character has been submitted
-                $.ajax({
-                  type: "POST",
-                  url: posturl,
-                  data: dataString,
-                  cache: false,
-                  success: function(html) {
-                    $("#sresult").html(html).show();
-                  }
-                });
-              }return false;    
-            });
-            
-            jQuery("#sresult").on("click",function(e){ 
-              var $clicked = $(e.target);
-              var $name = $clicked.find('.name').html();
-              var decoded = $("<div/>").html($name).text();
-              $('#searchid').val(decoded);
-            });
-            jQuery(document).on("click", function(e) { 
-              var $clicked = $(e.target);
-              if (! $clicked.hasClass("search")){
-                jQuery("#sresult").fadeOut(); 
-              }
-            });
-            $('#searchid').click(function(){
-              jQuery("#sresult").fadeIn();
-            });
-          });
-          -->
-        </script>
         <form name="searchform" method="post" action="/es/search/" style="margin:0;padding:0;float:left;" lang="es" onSubmit="if (this.searchid.value.length < 3) {return false;}">
           <input type="text" class="search" id="searchid" name="searchid" autocomplete="off" placeholder="Buscar por liga, equipo, canal..." />
           <input type="submit" value="" class="ssubmit" />
