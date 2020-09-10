@@ -1,5 +1,4 @@
 language: node_js
 node_js:
-  - '8'
-after_success:
-  npm run coverage
+  - '12'
+after_success: npm run coverage
