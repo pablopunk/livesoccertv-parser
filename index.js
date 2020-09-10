@@ -9,10 +9,10 @@ moment.tz.setDefault(DEFAULT_TIMEZONE)
 
 let $ // cheerio will be initialized with the html body
 
-const baseUrl = 'http://www.livesoccertv.com/teams'
+const baseUrl = 'https://www.livesoccertv.com/teams'
 
-const splitTimezone = tz => tz.split('/')
-const urlifyTimezone = tz => tz.replace('/', '%2F')
+const splitTimezone = (tz) => tz.split('/')
+const urlifyTimezone = (tz) => tz.replace('/', '%2F')
 const getCountry = (city, tz) => {
   const cities = cityTimezones.lookupViaCity(city)
   for (const c of cities) {
@@ -27,12 +27,12 @@ const badCountryCodes = {
   ESP: 'ES',
   USA: 'US',
   GBR: 'UK',
-  RUS: 'RU'
+  RUS: 'RU',
 }
 
 const badLangCodes = {
   us: 'en',
-  gb: 'en'
+  gb: 'en',
 }
 
 const fixCountryCode = (country) => {
@@ -54,59 +54,47 @@ const fixLangCode = (lang) => {
 const getBody = async ({ country, team, timezone }) => {
   const url = getTeamUrl(country, team)
   const [continent, city] = splitTimezone(timezone)
-  let { iso3: countryCode, iso2: lang } = getCountry(city.replace('_', ' '), timezone)
+  let { iso3: countryCode, iso2: lang } = getCountry(
+    city.replace('_', ' '),
+    timezone
+  )
   lang = lang.toLowerCase()
   lang = fixLangCode(lang)
   countryCode = fixCountryCode(countryCode)
   const locale = `${lang}_${countryCode}`
 
-  const Cookie = `live=live; u_scores=on; u_continent=${continent}; u_country=${country}; u_country_code=${countryCode}; u_timezone=${urlifyTimezone(timezone)}; u_lang=${lang}; u_locale=${locale}`
-  const headers = { Cookie }
+  const cookie = `live=live; u_scores=on; u_continent=${continent}; u_country=${country}; u_country_code=${countryCode}; u_timezone=${urlifyTimezone(
+    timezone
+  )}; u_lang=${lang}; u_locale=${locale}`
+  const headers = {
+    cookie,
+    'user-agent':
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36',
+  }
 
   return (await get(url, { headers })).body
 }
 const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
 
 const adjustLocalTime = (time, timezone) => {
-  const resultDate = moment(time, 'hh:mm')
-    .clone()
-    .tz(timezone)
-    .format('LT')
+  const resultDate = moment(time, 'hh:mm').clone().tz(timezone).format('LT')
 
   return resultDate !== 'Invalid date' ? resultDate : time
 }
 
-const parseLive = n =>
-  $('tr.matchrow')
-    .eq(n)
-    .attr('class')
-    .includes('livematch')
-const parsePlayed = n =>
-  $('tr.matchrow > td.livecell > span')
-    .eq(n)
-    .attr('class') === 'narrow ft'
-const parseCompetition = n =>
-  $('tr.matchrow > td.compcell > a')
-    .eq(n)
-    .attr('title')
-const parseDate = n =>
-  $('tr.matchrow > td.datecell > a > span')
-    .eq(n)
-    .text()
-const parseTime = n =>
-  $('tr.matchrow > td.timecell')
-    .eq(n)
-    .find('span')
-    .eq(2)
-    .text()
-const parseGame = n =>
-  $('tr.matchrow > td.timecell')
-    .next('td')
-    .eq(n)
-    .find('a')
-    .text()
+const parseLive = (n) =>
+  $('tr.matchrow').eq(n).attr('class').includes('livematch')
+const parsePlayed = (n) =>
+  $('tr.matchrow > td.livecell > span').eq(n).attr('class') === 'narrow ft'
+const parseCompetition = (n) =>
+  $('tr.matchrow > td.compcell > a').eq(n).attr('title')
+const parseDate = (n) => $('tr.matchrow > td.datecell > a > span').eq(n).text()
+const parseTime = (n) =>
+  $('tr.matchrow > td.timecell').eq(n).find('span').eq(2).text()
+const parseGame = (n) =>
+  $('tr.matchrow > td.timecell').next('td').eq(n).find('a').text()
 
-const parseTvs = n => {
+const parseTvs = (n) => {
   const tvs = []
   $('tr.matchrow > td[width="240"]')
     .eq(n)
@@ -117,16 +105,16 @@ const parseTvs = n => {
   return tvs
 }
 
-const filterTvs = tv => tv && !tv.includes('…')
+const filterTvs = (tv) => tv && !tv.includes('…')
 
-const convertObjectsToArray = objects => {
+const convertObjectsToArray = (objects) => {
   const array = []
   objects.map((i, o) => array.push(o))
   return array
 }
 
 class Match {
-  constructor (n) {
+  constructor(n) {
     this.live = parseLive(n)
     this.played = parsePlayed(n)
     this.competition = parseCompetition(n)
@@ -142,13 +130,13 @@ const parseMatchesFromHtml = (body, timezone = DEFAULT_TIMEZONE) => {
   $ = cheerio.load(body)
   const matchRows = $('tr.matchrow')
 
-  let matches = matchRows.map(i => new Match(i))
+  let matches = matchRows.map((i) => new Match(i))
   matches = convertObjectsToArray(matches)
-  matches = matches.filter(m => m.tvs.length !== 0)
+  matches = matches.filter((m) => m.tvs.length !== 0)
 
-  matches = matches.map(m => ({
+  matches = matches.map((m) => ({
     ...m,
-    time: adjustLocalTime(m.time, timezone)
+    time: adjustLocalTime(m.time, timezone),
   }))
 
   return matches
