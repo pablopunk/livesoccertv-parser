@@ -2,7 +2,7 @@
   "name": "livesoccertv-parser",
   "version": "5.3.1",
   "description": "Parse match info from livesoccertv",
-  "author": "Pablo Varela <pablovarela182@gmail.com>",
+  "author": "Pablo Varela <pablo.com>",
   "scripts": {
     "test": "npm run test-coverage",
     "test-coverage": "nyc myass",
@@ -12,10 +12,10 @@
   },
   "bugs": {
     "url": "https://github.com/pablopunk/livesoccertv-parser/issues",
-    "email": "pablovarela182@gmail.com"
+    "email": "pablo.com"
   },
   "contributors": [
-    "Pablo Varela <pablovarela182@gmail.com>"
+    "Pablo Varela <pablo.com>"
   ],
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
