@@ -1,6 +1,6 @@
 # livesoccertv-parser
 
->© All rights reserved to [Live soccer TV](http://www.livesoccertv.com/)
+> © All rights reserved to [Live soccer TV](http://www.livesoccertv.com/)
 
 <p align="center">
   <a href="https://travis-ci.org/pablopunk/livesoccertv-parser"><img src="https://img.shields.io/travis/pablopunk/livesoccertv-parser.svg" /> </a>
@@ -13,7 +13,6 @@
 <p align="center">
   <i>Parse games info from livesoccertv</i>
 </p>
-
 
 ## Install
 
@@ -51,7 +50,7 @@ Match {
 
 ### API
 
-* Timezone
+- Timezone
 
 By default, the timezone is `America/New_York`. You can set your own with:
 
@@ -66,22 +65,18 @@ matches('england', 'arsenal', { timezone: 'Europe/London' })
 
 Feel free to open an _issue_ or a _PR_.
 
-
 ## License
 
 MIT
 
-
 ## Related
 
-More at [pablo.im](https://pablo.im)
+More at [pablopunk.com](https://pablopunk.com)
 
-* [microsoccer](https://github.com/pablopunk/microsoccer): Microservice to fetch soccer games schedules and tv channels.
-
+- [microsoccer](https://github.com/pablopunk/microsoccer): Microservice to fetch soccer games schedules and tv channels.
 
 ## Author
 
-| ![me](https://gravatar.com/avatar/fa50aeff0ddd6e63273a068b04353d9d?size=100)           |
-| --------------------------------- |
-| © 2018 [Pablo Varela](https://pablo.im)   |
-
+| ![me](https://gravatar.com/avatar/fa50aeff0ddd6e63273a068b04353d9d?size=100) |
+| ---------------------------------------------------------------------------- |
+| © 2018 [Pablo Varela](https://pablopunk.com)                                 |
