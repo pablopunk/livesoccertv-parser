@@ -1,6 +1,6 @@
 {
   "name": "livesoccertv-parser",
-  "version": "5.3.4",
+  "version": "5.4.0",
   "description": "Parse match info from livesoccertv",
   "author": "Pablo Varela <pablo@pablopunk.com>",
   "scripts": {
