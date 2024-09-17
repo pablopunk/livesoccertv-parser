@@ -96,8 +96,7 @@ const adjustLocalTime = (time, timezone) => {
 	return resultDate !== "Invalid date" ? resultDate : time;
 };
 
-const parseLive = (n) =>
-	$("tr.matchrow").eq(n).find(".livecell").hasClass("live");
+const parseLive = (n) => $("tr.matchrow").eq(n).hasClass("livematch");
 const parsePlayed = (n) =>
 	$("tr.matchrow").eq(n).find(".livecell").hasClass("ft");
 const parseCompetition = (n) =>

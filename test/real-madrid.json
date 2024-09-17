@@ -75,7 +75,7 @@
     ]
   },
   {
-    "live": true,
+    "live": false,
     "played": false,
     "competition": "Liga de Campeones de la UEFA",
     "date": "Martes, 17 Septiembre",
@@ -90,7 +90,7 @@
     ]
   },
   {
-    "live": true,
+    "live": false,
     "played": false,
     "competition": "La Liga",
     "date": "Sábado, 21 Septiembre",
@@ -105,7 +105,7 @@
     ]
   },
   {
-    "live": true,
+    "live": false,
     "played": false,
     "competition": "La Liga",
     "date": "Martes, 24 Septiembre",
@@ -120,7 +120,7 @@
     ]
   },
   {
-    "live": true,
+    "live": false,
     "played": false,
     "competition": "La Liga",
     "date": "Domingo, 29 Septiembre",
@@ -135,7 +135,7 @@
     ]
   },
   {
-    "live": true,
+    "live": false,
     "played": false,
     "competition": "Liga de Campeones de la UEFA",
     "date": "Miércoles, 2 Octubre",
