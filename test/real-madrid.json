@@ -1,113 +1,152 @@
 [
   {
-    "live":false,
-    "played":true,
-    "competition":"Liga Juvenil de la UEFA",
-    "date":"oct 2",
-    "time":"7:00 AM",
-    "game":"CSKA Moskva Sub-19 vs Real Madrid Sub-19",
-    "tvs":[
-      "Movistar+"
-    ]
-  },
-  {
-    "live":false,
-    "played":true,
-    "competition":"Liga de Campeones de la UEFA",
-    "date":"oct 2",
-    "time":"3:00 PM",
-    "game":"CSKA Moskva 1 - 0 Real Madrid",
-    "tvs":[
-      "Movistar+"
-    ]
-  },
-  {
-    "live":false,
-    "played":true,
-    "competition":"La Liga",
-    "date":"oct 6",
-    "time":"12:30 PM",
-    "game":"Deportivo Alavés 1 - 0 Real Madrid",
-    "tvs":[
-      "beIN Sports Connect España"
-    ]
-  },
-  {
-    "live":false,
-    "played":true,
-    "competition":"La Liga",
-    "date":"oct 20",
-    "time":"7:00 AM",
-    "game":"Real Madrid 1 - 2 Levante",
-    "tvs":[
-      "beIN Sports Connect España"
-    ]
-  },
-  {
-    "live":false,
-    "played":true,
-    "competition":"Liga de Campeones de la UEFA",
-    "date":"oct 23",
-    "time":"3:00 PM",
-    "game":"Real Madrid 2 - 1 Viktoria Plzeň",
-    "tvs":[
-      "Movistar+"
-    ]
-  },
-  {
-    "live":true,
-    "played":false,
-    "competition":"La Liga",
-    "date":"oct 28",
-    "time":"11:15 AM",
-    "game":"Barcelona vs Real Madrid",
-    "tvs":[
-      "beIN Sports Connect España"
-    ]
-  },
-  {
-    "live":false,
-    "played":false,
-    "competition":"Copa del Rey",
-    "date":"oct 31",
-    "time":"2:30 PM",
-    "game":"Melilla vs Real Madrid",
-    "tvs":[
-      "beIN Sports Connect España"
-    ]
-  },
-  {
-    "live":false,
-    "played":false,
-    "competition":"La Liga",
-    "date":"nov 3",
-    "time":"11:15 AM",
-    "game":"Real Madrid vs Real Valladolid",
-    "tvs":[
-      "beIN Sports Connect España"
-    ]
-  },
-  {
-    "live":false,
-    "played":false,
-    "competition":"Liga de Campeones de la UEFA",
-    "date":"nov 7",
-    "time":"3:00 PM",
-    "game":"Viktoria Plzeň vs Real Madrid",
-    "tvs":[
-      "Movistar+"
-    ]
-  },
-  {
-    "live":false,
-    "played":false,
-    "competition":"La Liga",
-    "date":"nov 11",
-    "time":"2:45 PM",
-    "game":"Celta de Vigo vs Real Madrid",
-    "tvs":[
+    "live": false,
+    "played": false,
+    "competition": "La Liga",
+    "date": "Domingo, 18 Agosto",
+    "time": "3:30 PM",
+    "game": "Mallorca 1 - 1\n                                            Real Madrid",
+    "tvs": [
       "Movistar+",
-      "Movistar Partidazo"
+      "LaLiga TV Bar HD",
+      "DAZN Spain",
+      "DAZN LaLiga",
+      "DAZN LaLiga 2"
+    ]
+  },
+  {
+    "live": false,
+    "played": false,
+    "competition": "La Liga",
+    "date": "Domingo, 25 Agosto",
+    "time": "11:00 AM",
+    "game": "Real Madrid 3 - 0\n                                            Real Valladolid",
+    "tvs": [
+      "Movistar+",
+      "LaLiga TV Bar HD",
+      "M+ LALIGA TV",
+      "M+ LALIGA TV 2",
+      "DAZN Deutschland"
+    ]
+  },
+  {
+    "live": false,
+    "played": false,
+    "competition": "La Liga",
+    "date": "Jueves, 29 Agosto",
+    "time": "3:30 PM",
+    "game": "Las Palmas 1 - 1\n                                            Real Madrid",
+    "tvs": [
+      "Movistar+",
+      "LaLiga TV Bar HD",
+      "M+ LALIGA TV",
+      "M+ LALIGA TV 2",
+      "DAZN Deutschland"
+    ]
+  },
+  {
+    "live": false,
+    "played": false,
+    "competition": "La Liga",
+    "date": "Domingo, 1 Septiembre",
+    "time": "3:30 PM",
+    "game": "Real Madrid 2 - 0\n                                            Real Betis",
+    "tvs": [
+      "Movistar+",
+      "LaLiga TV Bar HD",
+      "DAZN Spain",
+      "DAZN LaLiga",
+      "DAZN LaLiga 2"
+    ]
+  },
+  {
+    "live": false,
+    "played": false,
+    "competition": "La Liga",
+    "date": "Sábado, 14 Septiembre",
+    "time": "3:00 PM",
+    "game": "Real Sociedad 0 - 2\n                                            Real Madrid",
+    "tvs": [
+      "Movistar+",
+      "LaLiga TV Bar HD",
+      "M+ LALIGA TV",
+      "M+ LALIGA TV 2",
+      "Movistar Plus+"
+    ]
+  },
+  {
+    "live": true,
+    "played": false,
+    "competition": "Liga de Campeones de la UEFA",
+    "date": "Martes, 17 Septiembre",
+    "time": "3:00 PM",
+    "game": "Real Madrid vs Stuttgart",
+    "tvs": [
+      "Movistar+",
+      "Movistar Liga de Campeones",
+      "Sport 24",
+      "TV2 Sport",
+      "Tring Sport 1"
+    ]
+  },
+  {
+    "live": true,
+    "played": false,
+    "competition": "La Liga",
+    "date": "Sábado, 21 Septiembre",
+    "time": "3:00 PM",
+    "game": "Real Madrid vs Espanyol",
+    "tvs": [
+      "Movistar+",
+      "LaLiga TV Bar HD",
+      "M+ LALIGA TV",
+      "M+ LALIGA TV 2",
+      "DAZN Deutschland"
+    ]
+  },
+  {
+    "live": true,
+    "played": false,
+    "competition": "La Liga",
+    "date": "Martes, 24 Septiembre",
+    "time": "3:00 PM",
+    "game": "Real Madrid vs Deportivo Alavés",
+    "tvs": [
+      "LaLiga TV Bar HD",
+      "DAZN Spain",
+      "TV4 Play",
+      "TV 2 Play",
+      "Blue Sport"
+    ]
+  },
+  {
+    "live": true,
+    "played": false,
+    "competition": "La Liga",
+    "date": "Domingo, 29 Septiembre",
+    "time": "3:00 PM",
+    "game": "Atlético Madrid vs Real Madrid",
+    "tvs": [
+      "LaLiga TV Bar HD",
+      "DAZN Spain",
+      "TV4 Play",
+      "TV 2 Play",
+      "Blue Sport"
+    ]
+  },
+  {
+    "live": true,
+    "played": false,
+    "competition": "Liga de Campeones de la UEFA",
+    "date": "Miércoles, 2 Octubre",
+    "time": "3:00 PM",
+    "game": "Lille vs Real Madrid",
+    "tvs": [
+      "Movistar+",
+      "Viaplay Sweden",
+      "TV 2 Play",
+      "Okko Спорт",
+      "FAST TV"
     ]
   }
 ]
