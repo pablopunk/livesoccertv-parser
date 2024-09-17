@@ -1,4 +1,3 @@
-const { get } = require("got");
 const moment = require("moment");
 const cheerio = require("cheerio");
 const cityTimezones = require("city-timezones");
