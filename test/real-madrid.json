@@ -1,7 +1,7 @@
 [
   {
     "live": false,
-    "played": false,
+    "played": true,
     "competition": "La Liga",
     "date": "Domingo, 18 Agosto",
     "time": "3:30 PM",
@@ -16,7 +16,7 @@
   },
   {
     "live": false,
-    "played": false,
+    "played": true,
     "competition": "La Liga",
     "date": "Domingo, 25 Agosto",
     "time": "11:00 AM",
@@ -31,7 +31,7 @@
   },
   {
     "live": false,
-    "played": false,
+    "played": true,
     "competition": "La Liga",
     "date": "Jueves, 29 Agosto",
     "time": "3:30 PM",
@@ -46,7 +46,7 @@
   },
   {
     "live": false,
-    "played": false,
+    "played": true,
     "competition": "La Liga",
     "date": "Domingo, 1 Septiembre",
     "time": "3:30 PM",
@@ -61,7 +61,7 @@
   },
   {
     "live": false,
-    "played": false,
+    "played": true,
     "competition": "La Liga",
     "date": "Sábado, 14 Septiembre",
     "time": "3:00 PM",

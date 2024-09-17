@@ -96,11 +96,10 @@ const adjustLocalTime = (time, timezone) => {
 	return resultDate !== "Invalid date" ? resultDate : time;
 };
 
-// Modified to match the new HTML structure
 const parseLive = (n) =>
 	$("tr.matchrow").eq(n).find(".livecell").hasClass("live");
 const parsePlayed = (n) =>
-	$("tr.matchrow").eq(n).find(".livecell span").attr("class") === "ft";
+	$("tr.matchrow").eq(n).find(".livecell").hasClass("ft");
 const parseCompetition = (n) =>
 	$("tr.matchrow").eq(n).prev("tr.drow").find("a").eq(1).text().trim();
 const parseDate = (n) =>
@@ -109,7 +108,6 @@ const parseTime = (n) =>
 	$("tr.matchrow").eq(n).find(".timecell span").eq(0).text().trim();
 const parseGame = (n) => $("tr.matchrow").eq(n).find("a").eq(0).text().trim();
 
-// Modified to match the new HTML structure for TV channels
 const parseTvs = (n) => {
 	const tvs = [];
 	$("tr.matchrow")
