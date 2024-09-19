@@ -3,7 +3,7 @@
 > © All rights reserved to [Live soccer TV](http://www.livesoccertv.com/)
 
 <p align="center">
-  <a href="https://github.com/pablopunk/miny"><img src="https://img.shields.io/badge/made_with-miny-1eced8.svg" /> </a>
+  <a href="https://github.com/pablopunk/miny"><img src="https://img.shields.io/badge/made_with-miny-1eced8.svg" /></a>
   <a href="https://www.npmjs.com/package/livesoccertv-parser"><img src="https://img.shields.io/npm/dt/livesoccertv-parser.svg" /></a>
 </p>
 
