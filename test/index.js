@@ -19,6 +19,10 @@ test("Test Barcelona", async (t) => {
 	await basicTest(t, "spain", "barcelona");
 });
 
+test("Unknown country/team/timezone throws", async (t) => {
+	await t.rejects(() => m("foo", "bar", { timezone: "foo/bar" }));
+});
+
 test("Test timezones", async (t) => {
 	const inEngland = await m("england", "arsenal", {
 		timezone: "Europe/Madrid",

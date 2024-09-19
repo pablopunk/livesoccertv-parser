@@ -53,10 +53,13 @@ const fixLangCode = (lang) => {
 const getBody = async ({ country, team, timezone }) => {
 	const url = getTeamUrl(country, team);
 	const [continent, city] = splitTimezone(timezone);
-	let { iso3: countryCode, iso2: lang } = getCountry(
-		city.replace("_", " "),
-		timezone,
-	);
+	const countryInfo = getCountry(city.replace("_", " "), timezone);
+	if (!countryInfo) {
+		console.error("Unkown country/team/timezone", { country, team, timezone });
+		return null;
+	}
+	let countryCode = countryInfo.iso3;
+	let lang = countryInfo.iso2;
 	lang = lang.toLowerCase();
 	lang = fixLangCode(lang);
 	countryCode = fixCountryCode(countryCode);
