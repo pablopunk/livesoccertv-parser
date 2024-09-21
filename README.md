@@ -70,8 +70,6 @@ searchTeams("madrid")
 
 ## Contribute
 
-[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
-
 Feel free to open an _issue_ or a _PR_.
 
 ## License
