@@ -20,11 +20,30 @@ declare module "livesoccertv-parser" {
 	 * @param options - Optional parameters like timezone.
 	 * @returns A promise that resolves to an array of Match objects.
 	 */
-	function matches(
+	function getMatches(
 		country: string,
 		team: string,
-		options?: MatchesOptions,
+		options?: MatchesOptions
 	): Promise<Match[]>;
 
-	export default matches;
+	/**
+	 * Searches for teams based on a query string.
+	 * @param query - The search query.
+	 * @param options - Optional parameters like timezone.
+	 * @returns A promise that resolves to an array of [country, team] tuples.
+	 */
+	function searchTeams(
+		query: string,
+		options?: MatchesOptions
+	): Promise<[string, string][]>;
+
+	/**
+	 * Parses matches from HTML content.
+	 * @param body - The HTML content to parse.
+	 * @param timezone - The timezone to use for parsing times.
+	 * @returns An array of Match objects.
+	 */
+	function parseMatchesFromHtml(body: string, timezone?: string): Match[];
+
+	export { getMatches, searchTeams, parseMatchesFromHtml };
 }
