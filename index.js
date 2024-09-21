@@ -54,7 +54,7 @@ const getDataFromTimezone = (timezone) => {
   const [continent, city] = splitTimezone(timezone)
   const countryInfo = getCountry(city.replace('_', ' '), timezone)
   if (!countryInfo) {
-    console.error('Unkown country/team/timezone', { team, timezone })
+    console.error('Unkown country/team/timezone', { timezone })
     return null
   }
   let countryCode = countryInfo.iso3
