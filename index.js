@@ -169,16 +169,23 @@ const parseMatchesFromHtml = (body, timezone = DEFAULT_TIMEZONE) => {
 }
 
 module.exports.getMatches = async (country, team, options = {}) => {
+  try {
+
   const timezone = options.timezone || DEFAULT_TIMEZONE
   const body = await getBody({ country, team, timezone })
   const matches = parseMatchesFromHtml(body, timezone)
 
-  return matches
+    return matches
+  } catch (error) {
+    console.error('Error fetching matches', { error })
+    return []
+  }
 }
 
 module.exports.searchTeams = async (query, options = {}) => {
-  const timezone = options.timezone || DEFAULT_TIMEZONE
-  const { lang, countryCode } = getDataFromTimezone(timezone)
+  try {
+    const timezone = options.timezone || DEFAULT_TIMEZONE
+    const { lang, countryCode } = getDataFromTimezone(timezone)
   const url = `https://www.livesoccertv.com/es/include/autocomplete.php?search=${query}&s_type=instant&lang=${lang}&iso=${countryCode}`
   const response = await fetch(url)
   const body = await response.text()
@@ -192,7 +199,11 @@ module.exports.searchTeams = async (query, options = {}) => {
     .get()
     .filter(Boolean)
     .map((team) => team.split('/'))
-  return teams
+    return teams
+  } catch (error) {
+    console.error('Error searching teams', { error })
+    return []
+  }
 }
 
 module.exports.parseMatchesFromHtml = parseMatchesFromHtml
