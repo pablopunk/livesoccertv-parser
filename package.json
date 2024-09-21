@@ -4,7 +4,7 @@
   "description": "Parse match info from livesoccertv",
   "author": "Pablo Varela <pablo@pablopunk.com>",
   "scripts": {
-    "test": "npm run test-coverage",
+    "test": "bun run test-coverage",
     "test-coverage": "nyc myass",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "build": "babel index.js --out-file build.js",
