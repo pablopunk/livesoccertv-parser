@@ -67,6 +67,7 @@ searchTeams("madrid")
 //   ["spain", "real-madrid"],
 //   ["spain", "atletico-madrid"],
 // ]
+```
 
 ## Contribute
 
