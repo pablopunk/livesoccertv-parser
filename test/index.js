@@ -23,8 +23,9 @@ test("Test Barcelona", async (t) => {
 	await basicTest(t, "spain", "barcelona");
 });
 
-test("Unknown country/team/timezone throws", async (t) => {
-	await t.rejects(() => m.getMatches("foo", "bar", { timezone: "foo/bar" }));
+test("Unknown country/team/timezone does not throw", async (t) => {
+	const matches = await m.getMatches("foo", "bar", { timezone: "foo/bar" });
+	t.is(matches, []);
 });
 
 test("Test timezones", async (t) => {
