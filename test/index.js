@@ -3,6 +3,10 @@ const fs = require("fs");
 const moment = require("moment");
 const m = require("../index"); // dont import built code - can help when getting errors on tests
 
+const sortArray = (search) => {
+	return search.sort((a, b) => `${a[0]}/${a[1]}`.localeCompare(`${b[0]}/${b[1]}`));
+};
+
 const basicTest = async (t, country, team) => {
 	const matches = await m.getMatches(country, team);
 	t.true(Array.isArray(matches));
@@ -38,8 +42,11 @@ test("Test timezones", async (t) => {
 
 test("Test search", async (t) => {
 	const search = await m.searchTeams("madrid");
-	const sortedSearch = search.sort();
-	const sortedExpected = ["spain/real-madrid", "spain/atletico-madrid"].sort();
+	const sortedSearch = sortArray(search);
+	const sortedExpected = sortArray([
+		["spain", "real-madrid"],
+		["spain", "atletico-madrid"],
+	]);
 	t.is(sortedSearch, sortedExpected);
 });
 

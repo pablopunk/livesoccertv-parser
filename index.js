@@ -191,6 +191,7 @@ module.exports.searchTeams = async (query, options = {}) => {
     })
     .get()
     .filter(Boolean)
+    .map((team) => team.split('/'))
   return teams
 }
 

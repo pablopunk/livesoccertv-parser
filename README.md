@@ -22,15 +22,15 @@ npm install livesoccertv-parser
 The parser works with promises:
 
 ```js
-const matches = require('livesoccertv-parser')
-console.log(await matches('spain', 'real-madrid')) //=> [{...}, {...}, ...]
+const {getMatches} = require('livesoccertv-parser')
+console.log(await getMatches('spain', 'real-madrid')) //=> [{...}, {...}, ...]
 ```
 
 Match object:
 
 ```js
 Match {
-  live: false
+  live: false,
   played: true,
   competition: 'Supercopa de España',
   date: 'August 13',
@@ -52,9 +52,21 @@ Match {
 By default, the timezone is `America/New_York`. You can set your own with:
 
 ```js
-matches('spain', 'real-madrid', { timezone: 'Europe/Madrid' })
-matches('england', 'arsenal', { timezone: 'Europe/London' })
+getMatches('spain', 'real-madrid', { timezone: 'Europe/Madrid' })
+getMatches('england', 'arsenal', { timezone: 'Europe/London' })
 ```
+
+- Search
+
+You can search for teams like so:
+
+```js
+const {searchTeams} = require("livesoccertv-parser")
+searchTeams("madrid")
+// [
+//   ["spain", "real-madrid"],
+//   ["spain", "atletico-madrid"],
+// ]
 
 ## Contribute
 
