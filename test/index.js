@@ -43,6 +43,16 @@ test("Test timezones", async (t) => {
 	t.is(diff, -1);
 });
 
+test("TVs should differ", async (t) => {
+	const inEngland = await m.getMatches("england", "arsenal", {
+		timezone: "Europe/Madrid",
+	});
+	const inSpain = await m.getMatches("england", "arsenal", {
+		timezone: "Europe/London",
+	});
+	t.false(inEngland[0].tvs[0] === inSpain[0].tvs[0]);
+});
+
 test("Test time change", async (t) => {
 	t.is(m.adjustLocalTime("7:00pm", "America/New_York"), "19:00");
 	t.is(m.adjustLocalTime("7:00am", "America/New_York"), "07:00");
