@@ -4,7 +4,10 @@ const cityTimezones = require('city-timezones')
 
 require('moment-timezone')
 const DEFAULT_TIMEZONE = 'America/New_York'
-moment.tz.setDefault(DEFAULT_TIMEZONE)
+// biome-ignore lint/complexity/useOptionalChain: <explanation>
+if (moment.tz && moment.tz.setDefault) {
+  moment.tz.setDefault(DEFAULT_TIMEZONE)
+}
 
 let $ // cheerio will be initialized with the html body
 
@@ -34,7 +37,8 @@ const badLangCodes = {
   gb: 'en',
 }
 
-const fixCountryCode = (country) => {
+const fixCountryCode = (_country) => {
+  let country = _country
   for (const bad in badCountryCodes) {
     country = country.replace(bad, badCountryCodes[bad])
   }
@@ -42,7 +46,8 @@ const fixCountryCode = (country) => {
   return country
 }
 
-const fixLangCode = (lang) => {
+const fixLangCode = (_lang) => {
+  let lang = _lang
   for (const bad in badLangCodes) {
     lang = lang.replace(bad, badLangCodes[bad])
   }
@@ -170,10 +175,9 @@ const parseMatchesFromHtml = (body, timezone = DEFAULT_TIMEZONE) => {
 
 module.exports.getMatches = async (country, team, options = {}) => {
   try {
-
-  const timezone = options.timezone || DEFAULT_TIMEZONE
-  const body = await getBody({ country, team, timezone })
-  const matches = parseMatchesFromHtml(body, timezone)
+    const timezone = options.timezone || DEFAULT_TIMEZONE
+    const body = await getBody({ country, team, timezone })
+    const matches = parseMatchesFromHtml(body, timezone)
 
     return matches
   } catch (error) {
@@ -186,19 +190,19 @@ module.exports.searchTeams = async (query, options = {}) => {
   try {
     const timezone = options.timezone || DEFAULT_TIMEZONE
     const { lang, countryCode } = getDataFromTimezone(timezone)
-  const url = `https://www.livesoccertv.com/es/include/autocomplete.php?search=${query}&s_type=instant&lang=${lang}&iso=${countryCode}`
-  const response = await fetch(url)
-  const body = await response.text()
-  const $ = cheerio.load(body)
-  const teams = $('a[href*="%2Fteams%2F"]')
-    .map((i, el) => {
-      const href = $(el).attr('href')
-      const match = href.match(/%2Fteams%2F([^%]+%2F[^%]+)%2F/)
-      return match ? decodeURIComponent(match[1]) : null
-    })
-    .get()
-    .filter(Boolean)
-    .map((team) => team.split('/'))
+    const url = `https://www.livesoccertv.com/es/include/autocomplete.php?search=${query}&s_type=instant&lang=${lang}&iso=${countryCode}`
+    const response = await fetch(url)
+    const body = await response.text()
+    const $ = cheerio.load(body)
+    const teams = $('a[href*="%2Fteams%2F"]')
+      .map((i, el) => {
+        const href = $(el).attr('href')
+        const match = href.match(/%2Fteams%2F([^%]+%2F[^%]+)%2F/)
+        return match ? decodeURIComponent(match[1]) : null
+      })
+      .get()
+      .filter(Boolean)
+      .map((team) => team.split('/'))
     return teams
   } catch (error) {
     console.error('Error searching teams', { error })
