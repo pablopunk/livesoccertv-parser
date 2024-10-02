@@ -5,6 +5,7 @@
   "author": "Pablo Varela <pablo@pablopunk.com>",
   "scripts": {
     "test": "bun run test-coverage",
+    "test:watch": "bunx nodemon --ext js --exec 'bun run test'",
     "test-coverage": "nyc myass",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "build": "babel index.js --out-file build.js",
