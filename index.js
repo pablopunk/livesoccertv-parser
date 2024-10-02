@@ -80,7 +80,7 @@ const getDataFromTimezone = (timezone) => {
 const getBody = async ({ country, team, timezone }) => {
   const url = getTeamUrl(country, team)
   const { countryCode, lang, locale, continent } = getDataFromTimezone(timezone)
-  const cookie = `PHPSESSID=s8sj1i0tp6dfpuhc96pp7fi3mr; u_country=${country}; u_country_code=${countryCode}; u_timezone=${urlifyTimezone(
+  const cookie = `u_country=${country}; u_country_code=${countryCode}; u_timezone=${urlifyTimezone(
     timezone,
   )}; live=live; u_scores=on; u_continent=${continent}; u_lang=${lang}; u_locale=${locale}; cf_clearance=bk.KgidKvvr6VwkqAS4WsVpC1q.BjwFWKTuSpLBRgJQ-1726529836-1.2.1.1-uhaLBvQThL5uZsG_4v6CKc8I6WZnh.Tc4U3LrQZyz7FKNFjQBJHQnegA63J1yTSNL5lHSLqQfAyFQHdlvhYBFHfylHYk4rLyhXA30xUvMtrrbfwuLWUAWoco2qzyUi8SPrikOZQEbAgETrm7WcyILiS7ZXWJqA_C.ws3Rw0WHtdbjQ8AmLL0j19J9D49vFD.f5KvYmJkk7Lf7jz9ywfY4oOxpJIF9ghs6EzldFQaDDJEkrLfy7eUuNQPTWJpKfyt6GTIpvdaEqVKFDql6V0VLWp1g2pXJpQ0vbb21shaMqBWZLPXB1Vot6Y1kI95rl4ekAmuMgTOb6JAIcs3F9hZtLYe.LJyD_9dfJrBs3x8KjV1kq0_Gjqx32EDxyJy2ZxNFXprn65.xJDoEtfHXHgqlA`
 
@@ -89,7 +89,7 @@ const getBody = async ({ country, team, timezone }) => {
       cookie,
       accept:
         'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-      'accept-language': 'es-ES,es;q=0.9',
+      'accept-language': `${lang}-${countryCode},${lang};q=0.9`,
       priority: 'u=0, i',
       'sec-ch-ua': '"Not;A=Brand";v="24", "Chromium";v="128"',
       'sec-ch-ua-mobile': '?0',
@@ -109,8 +109,7 @@ const getBody = async ({ country, team, timezone }) => {
 const getTeamUrl = (country, team) => `${baseUrl}/${country}/${team}`
 
 const adjustLocalTime = (time, timezone) => {
-  const resultDate = moment(time, 'hh:mm').clone().tz(timezone).format('LT')
-
+  const resultDate = moment(time, 'h:mm A').tz(timezone).format('HH:mm')
   return resultDate !== 'Invalid date' ? resultDate : time
 }
 
@@ -210,4 +209,6 @@ module.exports.searchTeams = async (query, options = {}) => {
   }
 }
 
+// Exporting for testing
 module.exports.parseMatchesFromHtml = parseMatchesFromHtml
+module.exports.adjustLocalTime = adjustLocalTime

@@ -4,7 +4,7 @@
     "played": true,
     "competition": "La Liga",
     "date": "Domingo, 18 Agosto",
-    "time": "3:30 PM",
+    "time": "15:30",
     "game": "Mallorca 1 - 1\n                                            Real Madrid",
     "tvs": [
       "Movistar+",
@@ -19,7 +19,7 @@
     "played": true,
     "competition": "La Liga",
     "date": "Domingo, 25 Agosto",
-    "time": "11:00 AM",
+    "time": "11:00",
     "game": "Real Madrid 3 - 0\n                                            Real Valladolid",
     "tvs": [
       "Movistar+",
@@ -34,7 +34,7 @@
     "played": true,
     "competition": "La Liga",
     "date": "Jueves, 29 Agosto",
-    "time": "3:30 PM",
+    "time": "15:30",
     "game": "Las Palmas 1 - 1\n                                            Real Madrid",
     "tvs": [
       "Movistar+",
@@ -49,7 +49,7 @@
     "played": true,
     "competition": "La Liga",
     "date": "Domingo, 1 Septiembre",
-    "time": "3:30 PM",
+    "time": "15:30",
     "game": "Real Madrid 2 - 0\n                                            Real Betis",
     "tvs": [
       "Movistar+",
@@ -64,7 +64,7 @@
     "played": true,
     "competition": "La Liga",
     "date": "Sábado, 14 Septiembre",
-    "time": "3:00 PM",
+    "time": "15:00",
     "game": "Real Sociedad 0 - 2\n                                            Real Madrid",
     "tvs": [
       "Movistar+",
@@ -79,7 +79,7 @@
     "played": false,
     "competition": "Liga de Campeones de la UEFA",
     "date": "Martes, 17 Septiembre",
-    "time": "3:00 PM",
+    "time": "15:00",
     "game": "Real Madrid vs Stuttgart",
     "tvs": [
       "Movistar+",
@@ -94,7 +94,7 @@
     "played": false,
     "competition": "La Liga",
     "date": "Sábado, 21 Septiembre",
-    "time": "3:00 PM",
+    "time": "15:00",
     "game": "Real Madrid vs Espanyol",
     "tvs": [
       "Movistar+",
@@ -109,7 +109,7 @@
     "played": false,
     "competition": "La Liga",
     "date": "Martes, 24 Septiembre",
-    "time": "3:00 PM",
+    "time": "15:00",
     "game": "Real Madrid vs Deportivo Alavés",
     "tvs": [
       "LaLiga TV Bar HD",
@@ -124,7 +124,7 @@
     "played": false,
     "competition": "La Liga",
     "date": "Domingo, 29 Septiembre",
-    "time": "3:00 PM",
+    "time": "15:00",
     "game": "Atlético Madrid vs Real Madrid",
     "tvs": [
       "LaLiga TV Bar HD",
@@ -139,7 +139,7 @@
     "played": false,
     "competition": "Liga de Campeones de la UEFA",
     "date": "Miércoles, 2 Octubre",
-    "time": "3:00 PM",
+    "time": "15:00",
     "game": "Lille vs Real Madrid",
     "tvs": [
       "Movistar+",

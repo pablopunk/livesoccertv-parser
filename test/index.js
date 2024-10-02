@@ -4,7 +4,9 @@ const moment = require("moment");
 const m = require("../index"); // dont import built code - can help when getting errors on tests
 
 const sortArray = (search) => {
-	return search.sort((a, b) => `${a[0]}/${a[1]}`.localeCompare(`${b[0]}/${b[1]}`));
+	return search.sort((a, b) =>
+		`${a[0]}/${a[1]}`.localeCompare(`${b[0]}/${b[1]}`),
+	);
 };
 
 const basicTest = async (t, country, team) => {
@@ -41,6 +43,13 @@ test("Test timezones", async (t) => {
 	t.is(diff, -1);
 });
 
+test("Test time change", async (t) => {
+	t.is(m.adjustLocalTime("7:00pm", "America/New_York"), "19:00");
+	t.is(m.adjustLocalTime("7:00am", "America/New_York"), "07:00");
+	t.is(m.adjustLocalTime("7:00am", "Europe/London"), "12:00");
+	t.is(m.adjustLocalTime("7:00am", "Europe/Madrid"), "13:00");
+});
+
 test("Test search", async (t) => {
 	const search = await m.searchTeams("madrid");
 	const sortedSearch = sortArray(search);
@@ -60,6 +69,9 @@ test("Static html", async (t) => {
 	const html = fs.readFileSync("./test/real-madrid.html").toString();
 	const matches = m.parseMatchesFromHtml(html);
 	const results = require("./real-madrid.json");
+
+	// Uncomment this to write new results to the HTML
+	// require("fs").writeFileSync("./test/real-madrid.json", JSON.stringify(matches, null, 2));
 
 	t.is(matches, results);
 });
